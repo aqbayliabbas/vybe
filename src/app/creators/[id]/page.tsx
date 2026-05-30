@@ -1,0 +1,237 @@
+"use client";
+
+import { useMemo, useState } from 'react';
+import Link from 'next/link';
+import { DashboardLayout } from '@/components/DashboardLayout';
+import { Button } from '@/components/ui/button';
+import { 
+  ArrowLeft, 
+  BadgeCheck, 
+  MapPin, 
+  Bookmark, 
+  Send,
+  Eye, 
+  Heart, 
+  Info,
+  Tv,
+  Camera,
+  PlaySquare,
+  Check
+} from 'lucide-react';
+import { toast } from 'sonner';
+import { CREATORS } from '@/lib/db';
+
+const fmt = (n: number) => {
+  if (n >= 1_000_000) return (n / 1_000_000).toFixed(1).replace(/\.0$/, '') + 'M';
+  if (n >= 1_000) return (n / 1_000).toFixed(1).replace(/\.0$/, '') + 'K';
+  return n.toLocaleString('en-US');
+};
+
+
+
+// Mock Top Videos (Phyllo Synced)
+const mockTopVideos = [
+  { id: 'v1', title: 'Summer refresh with Pepsi! 🥤🇩🇿', platform: 'TikTok', views: 245000, likes: 32000, comments: 1200, shares: 850, ratio: '9/16' },
+  { id: 'v2', title: 'My daily morning skincare routine ✨🧴', platform: 'TikTok', views: 125000, likes: 18500, comments: 450, shares: 210, ratio: '9/16' },
+  { id: 'v3', title: 'Algerian makeup transformation look 💄🔥', platform: 'TikTok', views: 98000, likes: 14000, comments: 620, shares: 330, ratio: '9/16' },
+];
+
+// Mock Collabs
+const mockCollabs = [
+  { brand: 'Pepsi Algeria', type: 'Deal', date: 'May 2026', views: 245000, budget: '15,000 DZD', status: 'completed' },
+  { brand: 'Djezzy DZ', type: 'Contest', date: 'Apr 2026', views: 89000, budget: 'Escrow prize', status: 'completed' },
+  { brand: "L'Oréal Paris DZ", type: 'Deal', date: 'Mar 2026', views: 125000, budget: '12,500 DZD', status: 'completed' },
+];
+
+export default function CreatorProfilePage({ params }: { params: { id: string } }) {
+  const creator = useMemo(() => {
+    return CREATORS.find(c => c.id === params.id) ?? CREATORS[0];
+  }, [params.id]);
+
+  const handleSaveToList = () => {
+    toast.success("Added to saved list", {
+      description: `${creator.name} has been added to 'Algerian Launch Creators'.`,
+    });
+  };
+
+  const handleInviteToDeal = () => {
+    toast.success("Invitation Sent", {
+      description: `Sent Pepsi Summer Refresh campaign invite to ${creator.name}.`,
+    });
+  };
+
+  return (
+    <DashboardLayout>
+      {/* Header */}
+      <div className="mb-6">
+        <Link href="/creators" className="inline-flex items-center gap-1.5 text-[12px] font-medium text-muted-foreground hover:text-foreground mb-4 transition-colors">
+          <ArrowLeft className="h-3.5 w-3.5" /> Back to Directory
+        </Link>
+        
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 rounded-3xl border border-border/40 bg-white/90 p-6 shadow-card">
+          <div className="flex items-center gap-4 flex-wrap sm:flex-nowrap">
+            <div className="flex h-16 w-16 items-center justify-center rounded-[20px] bg-gradient-to-br from-vybe/25 to-vybe-glow/15 text-2xl font-bold text-vybe-dark shrink-0">
+              {creator.avatar}
+            </div>
+            <div>
+              <div className="flex items-center gap-2 flex-wrap">
+                <h1 className="font-heading text-2xl font-bold text-foreground">{creator.name}</h1>
+                {creator.verified && (
+                  <span className="inline-flex items-center gap-1 shrink-0 rounded-full bg-success/15 border border-success/30 px-2 py-0.5 text-[10px] font-semibold text-success">
+                    <BadgeCheck className="h-3.5 w-3.5" /> Phyllo Verified
+                  </span>
+                )}
+              </div>
+              <p className="text-xs text-muted-foreground mt-0.5 flex items-center gap-1">
+                <span>{creator.handle}</span> · 
+                <span className="flex items-center gap-0.5"><MapPin className="h-3.5 w-3.5 shrink-0" /> {creator.location} {creator.flag}</span>
+              </p>
+            </div>
+          </div>
+
+          <div className="flex gap-2">
+            <Button variant="outline" onClick={handleSaveToList} className="rounded-full gap-1.5 border-border/60 text-[12px]">
+              <Bookmark className="h-3.5 w-3.5" /> Save to List
+            </Button>
+            <Button onClick={handleInviteToDeal} className="rounded-full gap-1.5 bg-gradient-to-br from-vybe to-vybe-glow text-white shadow-soft text-[12px]">
+              <Send className="h-3.5 w-3.5" /> Invite to Deal
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid gap-6 lg:grid-cols-[300px_1fr]">
+        {/* Profile Sidebar */}
+        <div className="space-y-6">
+          {/* Bio & Details */}
+          <div className="rounded-3xl border border-border/40 bg-white/90 p-5 shadow-card space-y-4">
+            <div>
+              <h3 className="font-heading text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">About Creator</h3>
+              <p className="text-[13px] text-foreground mt-2 leading-relaxed font-light">{creator.bio}</p>
+            </div>
+
+            <div className="border-t border-border/30 pt-4 space-y-3">
+              <div>
+                <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Primary Platform</p>
+                <p className="text-[13px] text-foreground font-medium mt-0.5">{creator.platform}</p>
+              </div>
+              <div>
+                <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Niche Niche</p>
+                <p className="text-[13px] text-foreground font-medium mt-0.5">{creator.niche}</p>
+              </div>
+              <div>
+                <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Content Languages</p>
+                <p className="text-[13px] text-foreground font-medium mt-0.5">{creator.lang}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Social accounts sync summary */}
+          <div className="rounded-3xl border border-border/40 bg-white/90 p-5 shadow-card space-y-3">
+            <h3 className="font-heading text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">Connected Profiles</h3>
+            
+            <div className="space-y-2">
+              <div className="flex items-center justify-between rounded-xl bg-muted/40 p-2.5">
+                <span className="text-[12px] font-semibold text-foreground flex items-center gap-1.5 capitalize">
+                  <Tv className="h-3.5 w-3.5 text-black shrink-0" /> {creator.platform}
+                </span>
+                <span className="text-[10px] bg-success/15 text-success rounded-full px-2 py-0.5 font-bold">Verified</span>
+              </div>
+              <div className="flex items-center justify-between rounded-xl bg-muted/20 p-2.5 text-muted-foreground/60 border border-dashed border-border/60">
+                <span className="text-[12px] font-medium flex items-center gap-1.5">
+                  <Camera className="h-3.5 w-3.5 shrink-0" /> Instagram
+                </span>
+                <span className="text-[9px] uppercase tracking-wider">Not connected</span>
+              </div>
+              <div className="flex items-center justify-between rounded-xl bg-muted/20 p-2.5 text-muted-foreground/60 border border-dashed border-border/60">
+                <span className="text-[12px] font-medium flex items-center gap-1.5">
+                  <PlaySquare className="h-3.5 w-3.5 shrink-0" /> YouTube
+                </span>
+                <span className="text-[9px] uppercase tracking-wider">Not connected</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Analytics & Videos Grid */}
+        <div className="space-y-6">
+          {/* Key Metrics */}
+          <div className="rounded-3xl border border-border/40 bg-white/90 p-6 shadow-card">
+            <h3 className="font-heading text-[16px] font-semibold text-foreground mb-4">Verifiable Social Analytics</h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {[
+                { label: 'Followers', value: fmt(creator.followers) },
+                { label: 'Avg Views', value: fmt(creator.avgViews) },
+                { label: 'Engagement', value: `${creator.engagement}%` },
+                { label: 'Est. Reach', value: fmt(creator.followers * 0.7) },
+              ].map(stat => (
+                <div key={stat.label} className="rounded-2xl bg-muted/30 p-4 border border-border/20 text-center">
+                  <p className="text-[10px] text-muted-foreground uppercase tracking-wider">{stat.label}</p>
+                  <p className="font-heading text-[20px] font-bold text-foreground mt-1">{stat.value}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Top videos grid */}
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <h3 className="font-heading text-[16px] font-semibold text-foreground">Top Performing Content</h3>
+              <span className="text-[11px] text-muted-foreground flex items-center gap-1"><Info className="h-3.5 w-3.5" /> Tracked via Phyllo API</span>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-3">
+              {mockTopVideos.map(video => (
+                <div key={video.id} className="relative overflow-hidden rounded-3xl border border-border/40 bg-zinc-950 aspect-[9/16] shadow-card group">
+                  <div className="absolute inset-0 flex flex-col justify-end p-4 text-white bg-gradient-to-t from-black/90 via-black/30 to-black/70">
+                    {/* Video stats */}
+                    <div className="space-y-1.5 relative z-10">
+                      <p className="text-[12px] font-semibold line-clamp-2">{video.title}</p>
+                      
+                      <div className="pt-2 border-t border-white/20 flex flex-col gap-1 text-[11px] text-zinc-300">
+                        <span className="flex items-center gap-1"><Eye className="h-3.5 w-3.5 text-vybe-glow shrink-0" /> {fmt(video.views)} views</span>
+                        <span className="flex items-center gap-1"><Heart className="h-3.5 w-3.5 text-rose-500 shrink-0" /> {fmt(video.likes)} likes</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Past collaborations */}
+          <div className="rounded-3xl border border-border/40 bg-white/90 shadow-card overflow-hidden">
+            <div className="px-6 py-5 border-b border-border/30">
+              <h3 className="font-heading text-[16px] font-semibold text-foreground">Vybe Collaboration History</h3>
+              <p className="text-xs text-muted-foreground mt-0.5">Campaigns completed on this platform.</p>
+            </div>
+            
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-border/40 bg-muted/30">
+                    {['Brand', 'Type', 'Date', 'Views Generated', 'Payout', 'Status'].map(h => (
+                      <th key={h} className="px-6 py-3 text-left text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/70">{h}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {mockCollabs.map((collab, i) => (
+                    <tr key={i} className={`border-b border-border/30 hover:bg-vybe/[0.02] transition-colors ${i === mockCollabs.length - 1 ? 'border-b-0' : ''}`}>
+                      <td className="px-6 py-4 text-[13px] font-semibold text-foreground">{collab.brand}</td>
+                      <td className="px-6 py-4 text-[12px]"><span className={`rounded px-1.5 py-0.5 text-[10px] font-semibold ${collab.type === 'Deal' ? 'bg-vybe/10 text-vybe-dark' : 'bg-vybe-glow/15 text-vybe-dark'}`}>{collab.type}</span></td>
+                      <td className="px-6 py-4 text-[12px] text-muted-foreground">{collab.date}</td>
+                      <td className="px-6 py-4 text-[12px] font-semibold text-foreground">{fmt(collab.views)}</td>
+                      <td className="px-6 py-4 text-[12px] text-muted-foreground">{collab.budget}</td>
+                      <td className="px-6 py-4 text-[12px]"><span className="text-success font-semibold flex items-center gap-1"><Check className="h-3.5 w-3.5" /> Paid</span></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </DashboardLayout>
+  );
+}
