@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, use } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { DashboardLayout } from '@/components/DashboardLayout';
@@ -25,7 +25,8 @@ import {
 } from 'lucide-react';
 import { toast } from 'sonner';
 
-export default function SubmissionDetailPage({ params }: { params: { id: string; sid: string } }) {
+export default function SubmissionDetailPage({ params }: { params: Promise<{ id: string; sid: string }> }) {
+  const { id, sid } = use(params);
   const router = useRouter();
   const [deal, setDeal] = useState<Campaign | null>(null);
   const [submission, setSubmission] = useState<Submission | null>(null);
@@ -39,10 +40,10 @@ export default function SubmissionDetailPage({ params }: { params: { id: string;
 
   const loadPageData = async () => {
     try {
-      const d = await db.getCampaignById(params.id);
+      const d = await db.getCampaignById(id);
       if (d) {
         setDeal(d);
-        const sub = await db.getSubmissionById(params.sid);
+        const sub = await db.getSubmissionById(sid);
         if (sub) {
           setSubmission(sub);
         }
@@ -56,7 +57,7 @@ export default function SubmissionDetailPage({ params }: { params: { id: string;
 
   useEffect(() => {
     loadPageData();
-  }, [params.id, params.sid]);
+  }, [id, sid]);
 
   const handleAccept = async () => {
     if (!submission) return;

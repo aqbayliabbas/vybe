@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo, use } from 'react';
 import Link from 'next/link';
 import { DashboardLayout } from '@/components/DashboardLayout';
 import { Button } from '@/components/ui/button';
@@ -11,7 +11,8 @@ import { Crown, Medal, Trophy, ArrowLeft, Eye, Users, DollarSign, RefreshCw, Ext
 
 type Tab = 'leaderboard' | 'submissions' | 'brief';
 
-export default function ContestDetailPage({ params }: { params: { id: string } }) {
+export default function ContestDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = use(params);
   const [contest, setContest] = useState<Campaign | null>(null);
   const [submissions, setSubmissions] = useState<Submission[]>([]);
   const [loading, setLoading] = useState(true);
@@ -22,10 +23,10 @@ export default function ContestDetailPage({ params }: { params: { id: string } }
   useEffect(() => {
     async function loadContestData() {
       try {
-        const c = await db.getCampaignById(params.id);
+        const c = await db.getCampaignById(id);
         if (c) {
           setContest(c);
-          const subs = await db.getSubmissions(params.id);
+          const subs = await db.getSubmissions(id);
           setSubmissions(subs);
         }
       } catch (e) {
@@ -35,7 +36,7 @@ export default function ContestDetailPage({ params }: { params: { id: string } }
       }
     }
     loadContestData();
-  }, [params.id]);
+  }, [id]);
 
   useEffect(() => {
     const t = setInterval(() => {
@@ -83,7 +84,7 @@ export default function ContestDetailPage({ params }: { params: { id: string } }
   const handleRefresh = async () => {
     setLastRefresh('Refreshing...');
     try {
-      const subs = await db.getSubmissions(params.id);
+      const subs = await db.getSubmissions(id);
       setSubmissions(subs);
       setLastRefresh('Just now');
     } catch (e) {

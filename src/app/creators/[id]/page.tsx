@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from 'react';
+import { useMemo, useState, use } from 'react';
 import Link from 'next/link';
 import { DashboardLayout } from '@/components/DashboardLayout';
 import { Button } from '@/components/ui/button';
@@ -43,10 +43,11 @@ const mockCollabs = [
   { brand: "L'Oréal Paris DZ", type: 'Deal', date: 'Mar 2026', views: 125000, budget: '12,500 DZD', status: 'completed' },
 ];
 
-export default function CreatorProfilePage({ params }: { params: { id: string } }) {
+export default function CreatorProfilePage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = use(params);
   const creator = useMemo(() => {
-    return CREATORS.find(c => c.id === params.id) ?? CREATORS[0];
-  }, [params.id]);
+    return CREATORS.find(c => c.id === id) ?? CREATORS[0];
+  }, [id]);
 
   const handleSaveToList = () => {
     toast.success("Added to saved list", {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo, useState, useEffect, use } from 'react';
 import Link from 'next/link';
 import { DashboardLayout } from '@/components/DashboardLayout';
 import { Button } from '@/components/ui/button';
@@ -12,7 +12,8 @@ import { toast } from 'sonner';
 
 type Tab = 'applications' | 'approved';
 
-export default function DealDetailPage({ params }: { params: { id: string } }) {
+export default function DealDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = use(params);
   const [deal, setDeal] = useState<Campaign | null>(null);
   const [submissions, setSubmissions] = useState<Submission[]>([]);
   const [loading, setLoading] = useState(true);
@@ -22,10 +23,10 @@ export default function DealDetailPage({ params }: { params: { id: string } }) {
 
   const loadDealData = async () => {
     try {
-      const d = await db.getCampaignById(params.id);
+      const d = await db.getCampaignById(id);
       if (d) {
         setDeal(d);
-        const subs = await db.getSubmissions(params.id);
+        const subs = await db.getSubmissions(id);
         setSubmissions(subs);
       }
     } catch (e) {
@@ -37,7 +38,7 @@ export default function DealDetailPage({ params }: { params: { id: string } }) {
 
   useEffect(() => {
     loadDealData();
-  }, [params.id]);
+  }, [id]);
 
   const filtered = useMemo(() => {
     return submissions.filter(s => {
@@ -202,7 +203,7 @@ export default function DealDetailPage({ params }: { params: { id: string } }) {
                       </Button>
                     </>
                   )}
-                  <Link href={`/deals/${params.id}/submission/${s.id}`}>
+                  <Link href={`/deals/${id}/submission/${s.id}`}>
                     <Button variant="ghost" size="sm" className="h-8 rounded-full px-3 text-[12px] text-vybe-dark hover:bg-vybe/10 gap-1">
                       Review <ChevronRight className="h-3 w-3" />
                     </Button>
@@ -235,7 +236,7 @@ export default function DealDetailPage({ params }: { params: { id: string } }) {
                   <span className="rounded-full bg-success/10 border border-success/20 px-3 py-1 font-medium text-success">Approved</span>
                   <span className="text-muted-foreground">Awaiting submission</span>
                 </div>
-                <Link href={`/deals/${params.id}/submission/${s.id}`}>
+                <Link href={`/deals/${id}/submission/${s.id}`}>
                   <Button variant="ghost" size="sm" className="h-8 rounded-full px-3 text-[12px] text-vybe-dark hover:bg-vybe/10 gap-1">
                     View <ChevronRight className="h-3 w-3" />
                   </Button>

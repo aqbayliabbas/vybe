@@ -51,7 +51,7 @@ export default function VerifyPage() {
       const otpCode = code.join('');
       await authService.verifyOtp(email, otpCode);
       toast.success('Email verified successfully!');
-      router.push('/signup/profile');
+      router.push('/onboarding');
     } catch (err: any) {
       console.error(err);
       setErrorMsg(err.message || 'Verification failed. Please check the code and try again.');
