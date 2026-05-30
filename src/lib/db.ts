@@ -17,16 +17,7 @@ export interface Creator {
   bio?: string;
 }
 
-export const CREATORS: Creator[] = [
-  { id: 'yasmine', name: 'Yasmine B.', handle: '@yasminecreates', platform: 'TikTok', flag: '🇩🇿', location: 'Algiers, Algeria', followers: 125000, avgViews: 42000, engagement: 4.2, niche: 'Beauty', lang: 'Arabic + French', verified: true, avatar: 'YB', bio: 'Algerian beauty & lifestyle creator sharing daily tips, makeup tutorials, and skincare routines from Algiers. Let\'s collaborate!' },
-  { id: 'karim', name: 'Karim T.', handle: '@karimdz', platform: 'TikTok', flag: '🇩🇿', location: 'Oran, Algeria', followers: 210000, avgViews: 85000, engagement: 3.8, niche: 'Tech', lang: 'Arabic + French', verified: true, avatar: 'KT', bio: 'Tech enthusiast & gamer. I review the latest gadgets, smartphones, and gaming setups in Arabic and French.' },
-  { id: 'sara', name: 'Sara M.', handle: '@saradz_beauty', platform: 'Instagram', flag: '🇩🇿', location: 'Constantine, Algeria', followers: 58000, avgViews: 18000, engagement: 5.1, niche: 'Beauty', lang: 'Arabic + French', verified: false, avatar: 'SM', bio: 'Hijab stylist & cosmetics reviewer. Sharing my honest opinions on Algerian & international brands.' },
-  { id: 'amine', name: 'Amine R.', handle: '@aminevibes', platform: 'TikTok', flag: '🇩🇿', location: 'Algiers, Algeria', followers: 95000, avgViews: 35000, engagement: 4.5, niche: 'Comedy', lang: 'Arabic', verified: true, avatar: 'AR', bio: 'Making people laugh with relatable Algerian comedy skits, street challenges, and short stories.' },
-  { id: 'lina', name: 'Lina C.', handle: '@linacooks', platform: 'Instagram', flag: '🇩🇿', location: 'Algiers, Algeria', followers: 72000, avgViews: 24000, engagement: 4.8, niche: 'Food', lang: 'Arabic + French', verified: true, avatar: 'LC', bio: 'Passionate home cook sharing modern takes on traditional Algerian recipes. Sweet & savory ideas daily!' },
-  { id: 'mehdi', name: 'Mehdi A.', handle: '@mehdidz', platform: 'YouTube', flag: '🇩🇿', location: 'Annaba, Algeria', followers: 245000, avgViews: 75000, engagement: 5.5, niche: 'Travel', lang: 'French', verified: true, avatar: 'MA', bio: 'Vlogging my adventures around Algeria and the world. Revealing hidden gems and local cuisines.' },
-  { id: 'rania', name: 'Rania F.', handle: '@raniafashion', platform: 'Instagram', flag: '🇦🇪', location: 'Dubai, UAE', followers: 198000, avgViews: 50000, engagement: 3.2, niche: 'Fashion', lang: 'English + Arabic', verified: true, avatar: 'RF', bio: 'Modern Arab fashion trends, styling diaries, and high-street lookbooks based in sunny Dubai.' },
-  { id: 'bilal', name: 'Bilal S.', handle: '@bilalsports', platform: 'TikTok', flag: '🇶🇦', location: 'Doha, Qatar', followers: 167000, avgViews: 55000, engagement: 4.0, niche: 'Sports', lang: 'Arabic + English', verified: true, avatar: 'BS', bio: 'Football analyst, freestyle tricks, and active lifestyle advocate. Sharing Doha sports community vibes.' },
-];
+export const CREATORS: Creator[] = [];
 
 export interface Campaign {
   id: string;

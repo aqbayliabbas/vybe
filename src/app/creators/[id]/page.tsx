@@ -46,8 +46,23 @@ const mockCollabs = [
 export default function CreatorProfilePage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
   const creator = useMemo(() => {
-    return CREATORS.find(c => c.id === id) ?? CREATORS[0];
+    return CREATORS.find(c => c.id === id);
   }, [id]);
+
+  if (!creator) {
+    return (
+      <DashboardLayout>
+        <div className="py-20 text-center text-muted-foreground flex flex-col items-center justify-center gap-4">
+          <p className="text-sm font-medium">Creator profile not found</p>
+          <Link href="/creators">
+            <Button variant="outline" className="rounded-full gap-2">
+              <ArrowLeft className="h-4 w-4" /> Back to Directory
+            </Button>
+          </Link>
+        </div>
+      </DashboardLayout>
+    );
+  }
 
   const handleSaveToList = () => {
     toast.success("Added to saved list", {
