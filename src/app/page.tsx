@@ -11,11 +11,11 @@ export const metadata: Metadata = {
 export default function Index() {
   return (
     <div className="min-h-screen bg-background overflow-x-hidden relative">
-      {/* Ambient background glows */}
+      {/* Ambient background glows - minimal dark aesthetic */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[600px] rounded-full bg-[oklch(0.82_0.1_300_/_0.12)] blur-[120px]" />
-        <div className="absolute top-[600px] right-0 w-[500px] h-[500px] rounded-full bg-[oklch(0.85_0.1_340_/_0.08)] blur-[100px]" />
-        <div className="absolute top-[1200px] left-0 w-[400px] h-[400px] rounded-full bg-[oklch(0.82_0.1_300_/_0.06)] blur-[80px]" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[600px] rounded-full bg-[rgba(255,255,255,0.03)] blur-[120px]" />
+        <div className="absolute top-[600px] right-0 w-[500px] h-[500px] rounded-full bg-[rgba(255,255,255,0.02)] blur-[100px]" />
+        <div className="absolute top-[1200px] left-0 w-[400px] h-[400px] rounded-full bg-[rgba(255,255,255,0.01)] blur-[80px]" />
       </div>
 
       {/* Navbar */}
@@ -52,7 +52,7 @@ export default function Index() {
           </div>
           <h1 className="font-heading mx-auto max-w-4xl text-[44px] font-extrabold tracking-tight text-foreground md:text-[64px] md:leading-[1.08] leading-[1.1]">
             The Creator Marketing Platform{' '}
-            <span className="bg-gradient-to-r from-vybe via-vybe-glow to-vybe-pink bg-clip-text text-transparent">Built for MENA</span>
+            <span className="text-foreground">Built for MENA</span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-[17px] text-muted-foreground leading-relaxed font-light">
             Launch a contest. Let 10,000+ creators compete for your brand. Pay only for the content that wins.
@@ -159,7 +159,7 @@ export default function Index() {
               <Search className="h-3 w-3 text-vybe" />
               Creator Database
             </div>
-            <h2 className="font-heading text-3xl md:text-[40px] font-bold tracking-tight text-foreground leading-tight">100,000+ MENA Creators. <span className="bg-gradient-to-r from-vybe to-vybe-pink bg-clip-text text-transparent">One Search.</span></h2>
+            <h2 className="font-heading text-3xl md:text-[40px] font-bold tracking-tight text-foreground leading-tight">100,000+ MENA Creators. <span className="text-foreground">One Search.</span></h2>
             <p className="mt-5 text-[15px] text-muted-foreground font-light leading-relaxed max-w-lg">
               Filter by region, niche, platform, follower count, average views, and engagement rate. Every creator stat is verified by Phyllo — not self-reported.
             </p>
@@ -191,7 +191,7 @@ export default function Index() {
                   </div>
                 </div>
               ))}
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/40 to-background/80 rounded-3xl flex items-end justify-center pb-8 pointer-events-none">
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background/95 rounded-3xl flex items-end justify-center pb-8 pointer-events-none">
                 <span className="rounded-full glass-strong px-4 py-2 text-[12px] font-semibold text-foreground shadow-soft border border-border/30">Sign up to unlock full access</span>
               </div>
             </div>
@@ -278,7 +278,7 @@ export default function Index() {
               { quote: 'I was spending hours on WhatsApp chasing creators. Now I post a deal brief and they apply to me. It changed how we work.', name: 'Youssef K.', role: 'Founder · E-commerce · Morocco' },
             ].map((t) => (
               <div key={t.name} className="rounded-3xl glass p-8 shadow-card border border-border/30 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-[200px] h-[200px] rounded-full bg-[oklch(0.85_0.1_340_/_0.06)] blur-[60px] pointer-events-none" />
+                <div className="absolute top-0 right-0 w-[200px] h-[200px] rounded-full bg-[rgba(255,255,255,0.02)] blur-[60px] pointer-events-none" />
                 <div className="relative">
                   <div className="flex items-center gap-1 mb-5">
                     {[...Array(5)].map((_, i) => (
@@ -300,19 +300,19 @@ export default function Index() {
       {/* CTA Section */}
       <section className="py-24 md:py-32">
         <div className="mx-auto max-w-[1240px] px-8 text-center">
-          <div className="rounded-[28px] bg-gradient-to-br from-primary via-[oklch(0.35_0.06_300)] to-primary p-14 md:p-20 shadow-elevated relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full bg-[oklch(0.72_0.14_300_/_0.15)] blur-[100px] pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-[300px] h-[300px] rounded-full bg-[oklch(0.85_0.1_340_/_0.1)] blur-[80px] pointer-events-none" />
+          <div className="rounded-[28px] bg-foreground p-14 md:p-20 shadow-elevated relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full bg-[rgba(255,255,255,0.05)] blur-[100px] pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-[300px] h-[300px] rounded-full bg-[rgba(255,255,255,0.03)] blur-[80px] pointer-events-none" />
             <div className="relative">
-              <h2 className="font-heading text-3xl font-bold text-white md:text-[44px] mb-4 leading-tight">Your next 50 creator videos are 14 days away.</h2>
-              <p className="text-[15px] text-white/60 max-w-md mx-auto mb-10 font-light">Launch your first contest free. No charge until you&apos;re ready.</p>
+              <h2 className="font-heading text-3xl font-bold text-background md:text-[44px] mb-4 leading-tight">Your next 50 creator videos are 14 days away.</h2>
+              <p className="text-[15px] text-background/60 max-w-md mx-auto mb-10 font-light">Launch your first contest free. No charge until you&apos;re ready.</p>
               <div className="flex flex-wrap items-center justify-center gap-4">
                 <Link href="/signup">
-                  <Button size="lg" className="bg-white text-primary hover:bg-white/90 font-semibold rounded-2xl px-8 h-12 text-sm shadow-soft transition-all duration-300 hover:shadow-elevated gap-2">
+                  <Button size="lg" className="bg-background text-foreground hover:bg-background/90 font-semibold rounded-2xl px-8 h-12 text-sm shadow-soft transition-all duration-300 hover:shadow-elevated gap-2">
                     Get Started Free <ArrowRight className="h-4 w-4" />
                   </Button>
                 </Link>
-                <Button variant="outline" size="lg" className="border-white/20 text-white hover:bg-white/10 rounded-2xl px-8 h-12 text-sm transition-all duration-300">
+                <Button variant="outline" size="lg" className="border-background/30 text-background hover:bg-background/10 rounded-2xl px-8 h-12 text-sm transition-all duration-300">
                   Book a Demo
                 </Button>
               </div>
