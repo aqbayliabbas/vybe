@@ -96,10 +96,6 @@ export default function Index() {
       {/* How It Works — Contests */}
       <section className="relative py-24 md:py-32">
         <div className="mx-auto max-w-[1240px] px-8">
-          <div className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-[11px] font-medium text-muted-foreground mb-4 shadow-card mx-auto block w-fit">
-            <Trophy className="h-3 w-3 text-vybe" />
-            Contests
-          </div>
           <h2 className="font-heading mb-4 text-center text-3xl font-bold tracking-tight text-foreground md:text-[40px]">Pay for performance. Own the content.</h2>
           <p className="mb-16 text-center text-[15px] text-muted-foreground max-w-md mx-auto font-light">A live competition where creators do the work and you keep every video.</p>
           <div className="grid gap-6 md:grid-cols-3">
