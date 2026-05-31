@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Inter_Tight } from "next/font/google";
+import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { AuthProvider } from "@/components/AuthProvider";
@@ -10,7 +10,7 @@ const inter = Inter({
   weight: ["300", "400", "500", "600", "700"],
 });
 
-const interDisplay = Inter_Tight({
+const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-heading",
   weight: ["300", "400", "500", "600", "700", "800"],
@@ -27,8 +27,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${interDisplay.variable} bg-background`} suppressHydrationWarning>
-      <body className="antialiased bg-background text-foreground">
+    <html lang="en" className={`${inter.variable} ${plusJakarta.variable}`} suppressHydrationWarning>
+      <body className="antialiased">
         <AuthProvider>
           {children}
         </AuthProvider>
