@@ -47,17 +47,12 @@ export function proxy(request: NextRequest) {
     return NextResponse.redirect(loginUrl);
   }
 
-  // 4. If authenticated + protected route but onboarding NOT done → onboarding
-  if (isProtected && isAuthenticated && !onboardingComplete) {
-    return NextResponse.redirect(new URL('/onboarding', request.url));
-  }
+  // 4. [Removed] We no longer force onboarding on every protected route access.
+  // It is now only enforced during the initial signup flow via client-side routing.
 
-  // 5. If logged in and trying to access auth pages → dashboard (or onboarding if not done)
+  // 5. If logged in and trying to access auth pages → dashboard
   const isAuthPath = authPaths.some(path => pathname === path || pathname.startsWith(path + '/'));
   if (isAuthPath && isAuthenticated) {
-    if (!onboardingComplete) {
-      return NextResponse.redirect(new URL('/onboarding', request.url));
-    }
     return NextResponse.redirect(new URL('/dashboard', request.url));
   }
 
