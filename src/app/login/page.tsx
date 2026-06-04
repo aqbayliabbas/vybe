@@ -28,9 +28,26 @@ export default function LoginPage() {
     setErrorMsg('');
 
     try {
-      await authService.signIn(email, password);
+      const { user, session } = await authService.signIn(email, password);
       toast.success('Successfully logged in!');
-      router.push('/dashboard');
+      
+      let role = user?.user_metadata?.role;
+      if (session?.access_token) {
+        try {
+          const payload = session.access_token.split('.')[1];
+          if (payload) {
+            const decoded = JSON.parse(atob(payload));
+            const decodedRole = decoded.user_role || (decoded.app_metadata && decoded.app_metadata.user_role);
+            if (decodedRole) role = decodedRole;
+          }
+        } catch (e) {}
+      }
+      
+      if (role === 'creator') {
+        router.push('/dashboard/creator');
+      } else {
+        router.push('/dashboard/brand');
+      }
     } catch (err: any) {
       console.error("Login error details:", err);
       const isFetchError = err.message === 'Failed to fetch' || err.name === 'AuthRetryableFetchError' || (err.message && err.message.includes('fetch'));
@@ -48,7 +65,25 @@ export default function LoginPage() {
     setGoogleLoading(true);
     setErrorMsg('');
     try {
-      await authService.signInWithGoogle();
+      const { user, session } = await authService.signInWithGoogle();
+      
+      let role = user?.user_metadata?.role;
+      if (session?.access_token) {
+        try {
+          const payload = session.access_token.split('.')[1];
+          if (payload) {
+            const decoded = JSON.parse(atob(payload));
+            const decodedRole = decoded.user_role || (decoded.app_metadata && decoded.app_metadata.user_role);
+            if (decodedRole) role = decodedRole;
+          }
+        } catch (e) {}
+      }
+      
+      if (role === 'creator') {
+        router.push('/dashboard/creator');
+      } else {
+        router.push('/dashboard/brand');
+      }
     } catch (err: any) {
       console.error(err);
       const isFetchError = err.message === 'Failed to fetch' || err.name === 'AuthRetryableFetchError' || (err.message && err.message.includes('fetch'));

@@ -15,6 +15,7 @@ export default function SignupPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPw, setShowPw] = useState(false);
+  const [role, setRole] = useState<'brand' | 'creator'>('creator');
   const [loading, setLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
@@ -29,7 +30,7 @@ export default function SignupPage() {
     setErrorMsg('');
 
     try {
-      await authService.signUp(email, password, name);
+      await authService.signUp(email, password, name, role);
       // Store email in sessionStorage so verification page knows where to send/confirm the code
       sessionStorage.setItem('vybe_signup_email', email);
       toast.success('Account created! A verification code has been sent.');
@@ -86,6 +87,35 @@ export default function SignupPage() {
           <p className="mt-2 text-[13px] text-muted-foreground text-center">Start connecting with creators across MENA</p>
 
           <form onSubmit={handleSubmit} className="mt-8 space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-foreground mb-1.5">I am a</label>
+              <div className="grid grid-cols-2 gap-3">
+                <button
+                  type="button"
+                  onClick={() => setRole('creator')}
+                  className={`h-11 rounded-2xl text-[13px] font-medium transition-all ${
+                    role === 'creator'
+                      ? 'bg-vybe text-white shadow-soft'
+                      : 'bg-muted/50 text-muted-foreground hover:bg-muted'
+                  }`}
+                  disabled={loading || googleLoading}
+                >
+                  Creator
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setRole('brand')}
+                  className={`h-11 rounded-2xl text-[13px] font-medium transition-all ${
+                    role === 'brand'
+                      ? 'bg-vybe text-white shadow-soft'
+                      : 'bg-muted/50 text-muted-foreground hover:bg-muted'
+                  }`}
+                  disabled={loading || googleLoading}
+                >
+                  Brand
+                </button>
+              </div>
+            </div>
             <div>
               <label className="block text-sm font-medium text-foreground mb-1.5">Full name</label>
               <Input 

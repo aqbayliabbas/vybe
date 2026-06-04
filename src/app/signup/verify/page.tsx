@@ -49,9 +49,14 @@ export default function VerifyPage() {
 
     try {
       const otpCode = code.join('');
-      await authService.verifyOtp(email, otpCode);
+      const result = await authService.verifyOtp(email, otpCode);
       toast.success('Email verified successfully!');
-      router.push('/onboarding');
+      const role = result?.user?.user_metadata?.role;
+      if (role === 'creator') {
+        router.push('/dashboard/creator');
+      } else {
+        router.push('/dashboard/brand');
+      }
     } catch (err: any) {
       console.error(err);
       setErrorMsg(err.message || 'Verification failed. Please check the code and try again.');

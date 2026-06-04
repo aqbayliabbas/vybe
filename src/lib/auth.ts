@@ -1,6 +1,8 @@
 import { supabase } from './supabase';
 import { User, Session, AuthChangeEvent } from '@supabase/supabase-js';
 
+type UserRole = 'brand' | 'creator';
+
 // Cookie management helpers
 const setCookie = (name: string, value: string, days = 7) => {
   if (typeof document === 'undefined') return;
@@ -17,16 +19,25 @@ const deleteCookie = (name: string) => {
 
 type AuthStateCallback = (event: AuthChangeEvent, session: Session | null) => void;
 
+// Extract role from user metadata and persist as a readable cookie for proxy.ts
+const setRoleCookie = (session: Session) => {
+  const role = session.user?.user_metadata?.role;
+  if (role === 'brand' || role === 'creator') {
+    setCookie('vybe_user_role', role, 365);
+  }
+};
+
 // Direct Supabase Auth Service
 export const authService = {
   // Sign Up with Email and Password
-  async signUp(email: string, password: string, name: string) {
+  async signUp(email: string, password: string, name: string, role: UserRole) {
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
         data: {
           full_name: name,
+          role,
         },
       },
     });
@@ -44,6 +55,8 @@ export const authService = {
     if (error) throw error;
     if (data?.session) {
       setCookie('vybe_auth_session', 'active');
+      setCookie('sb-access-token', data.session.access_token);
+      setRoleCookie(data.session);
     }
     return data;
   },
@@ -67,6 +80,8 @@ export const authService = {
     if (error) throw error;
     if (data?.session) {
       setCookie('vybe_auth_session', 'active');
+      setCookie('sb-access-token', data.session.access_token);
+      setRoleCookie(data.session);
     }
     return data;
   },
@@ -105,6 +120,8 @@ export const authService = {
     if (error) throw error;
     if (data?.session) {
       setCookie('vybe_auth_session', 'active');
+      setCookie('sb-access-token', data.session.access_token);
+      setRoleCookie(data.session);
     }
     return data;
   },
@@ -114,9 +131,13 @@ export const authService = {
     const { data: { session }, error } = await supabase.auth.getSession();
     if (error || !session) {
       deleteCookie('vybe_auth_session');
+      deleteCookie('sb-access-token');
+      deleteCookie('vybe_user_role');
       return null;
     }
     setCookie('vybe_auth_session', 'active');
+    setCookie('sb-access-token', session.access_token);
+    setRoleCookie(session);
     return session;
   },
 
@@ -125,6 +146,8 @@ export const authService = {
     const { error } = await supabase.auth.signOut();
     if (error) throw error;
     deleteCookie('vybe_auth_session');
+    deleteCookie('sb-access-token');
+    deleteCookie('vybe_user_role');
   },
 
   // Register listener for auth state change
@@ -132,8 +155,12 @@ export const authService = {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       if (session) {
         setCookie('vybe_auth_session', 'active');
+        setCookie('sb-access-token', session.access_token);
+        setRoleCookie(session);
       } else {
         deleteCookie('vybe_auth_session');
+        deleteCookie('sb-access-token');
+        deleteCookie('vybe_user_role');
       }
       callback(event, session);
     });

@@ -4,10 +4,12 @@ import type { NextRequest } from 'next/server';
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const sessionCookie = request.cookies.get('vybe_auth_session')?.value;
+  const roleCookie = request.cookies.get('vybe_user_role')?.value;
+  
   const isAuthenticated = sessionCookie === 'active';
-  const onboardingComplete = request.cookies.get('vybe_onboarding_complete')?.value === 'true';
+  const role = roleCookie === 'brand' || roleCookie === 'creator' ? roleCookie : null;
 
-  // Define paths to protect (require auth + completed onboarding)
+  // Define paths to protect
   const protectedPrefixes = [
     '/dashboard',
     '/contests',
@@ -27,33 +29,40 @@ export function proxy(request: NextRequest) {
     '/reset-password'
   ];
 
-  // Onboarding path — requires auth but NOT completed onboarding
-  const isOnboardingPath = pathname === '/onboarding' || pathname.startsWith('/onboarding/');
-
-  // 1. If accessing onboarding without being authenticated → login
-  if (isOnboardingPath && !isAuthenticated) {
-    return NextResponse.redirect(new URL('/login', request.url));
-  }
-
-  // 2. If accessing onboarding but already completed → dashboard
-  if (isOnboardingPath && isAuthenticated && onboardingComplete) {
-    return NextResponse.redirect(new URL('/dashboard', request.url));
-  }
-
-  // 3. If accessing a protected route without being authenticated → login
+  // 1. If accessing a protected route without being authenticated → login
   const isProtected = protectedPrefixes.some(prefix => pathname === prefix || pathname.startsWith(prefix + '/'));
   if (isProtected && !isAuthenticated) {
     const loginUrl = new URL('/login', request.url);
     return NextResponse.redirect(loginUrl);
   }
 
-  // 4. [Removed] We no longer force onboarding on every protected route access.
-  // It is now only enforced during the initial signup flow via client-side routing.
+  // 2. Role-based Route Protection for Dashboards
+  if (isAuthenticated && pathname.startsWith('/dashboard')) {
+    if (pathname.startsWith('/dashboard/brand') && role === 'creator') {
+      return NextResponse.redirect(new URL('/unauthorized', request.url));
+    }
+    if (pathname.startsWith('/dashboard/creator') && role === 'brand') {
+      return NextResponse.redirect(new URL('/unauthorized', request.url));
+    }
+    
+    // Redirect base /dashboard to the correct sub-dashboard if they try to access it directly
+    if (pathname === '/dashboard' || pathname === '/dashboard/') {
+      if (role === 'creator') {
+        return NextResponse.redirect(new URL('/dashboard/creator', request.url));
+      } else {
+        return NextResponse.redirect(new URL('/dashboard/brand', request.url));
+      }
+    }
+  }
 
-  // 5. If logged in and trying to access auth pages → dashboard
+  // 3. If logged in and trying to access auth pages → dashboard
   const isAuthPath = authPaths.some(path => pathname === path || pathname.startsWith(path + '/'));
   if (isAuthPath && isAuthenticated) {
-    return NextResponse.redirect(new URL('/dashboard', request.url));
+    if (role === 'creator') {
+      return NextResponse.redirect(new URL('/dashboard/creator', request.url));
+    } else {
+      return NextResponse.redirect(new URL('/dashboard/brand', request.url));
+    }
   }
 
   return NextResponse.next();
