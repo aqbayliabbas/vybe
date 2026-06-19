@@ -11,8 +11,8 @@ export function DashboardLayout({ children }: { children: ReactNode }) {
       </div>
       <div className="relative flex min-h-screen">
         <BrandSidebar />
-        <main className="ml-[240px] flex-1 p-6 md:p-8">
-          <div className="rounded-[28px] border border-border/40 bg-white/80 p-6 shadow-soft backdrop-blur-xl md:p-10">
+        <main className="flex-1 w-full pt-20 px-4 pb-6 md:pt-6 md:p-8 md:ml-[240px] max-w-[100vw]">
+          <div className="rounded-[28px] border border-border/40 bg-white/80 p-5 shadow-soft backdrop-blur-xl md:p-10 w-full overflow-x-auto">
             {children}
           </div>
         </main>

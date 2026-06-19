@@ -1,0 +1,158 @@
+{
+  "nav": {
+    "brands": "Pour les Marques",
+    "creators": "Pour les Créateurs",
+    "pricing": "Tarification",
+    "login": "Se connecter",
+    "start": "Commencer"
+  },
+  "hero": {
+    "badge": "Fait pour la MENA, utilisé en toute confiance",
+    "title_main": "Le marketing d'influence,",
+    "title_highlight": "simplement efficace",
+    "description": "Trouvez les bons créateurs, collaborez directement, et mesurez des résultats réels sans intermédiaires ni surprises.",
+    "start_free": "Démarrer gratuitement",
+    "view_demo": "Voir une démo"
+  },
+  "stats": {
+    "creators_val": "100 000+",
+    "creators_label": "Créateurs vérifiés",
+    "collabs_val": "1 000+",
+    "collabs_label": "Collaborations",
+    "views_val": "1 Md+",
+    "views_label": "Vues organiques"
+  },
+  "deals": {
+    "title": "Collaborez directement. Sans intermédiaire.",
+    "desc": "Des partenariats clairs avec des créateurs vérifiés, de la sélection au paiement.",
+    "step1_title": "Publiez votre brief.",
+    "step1_desc": "Décrivez vos attentes, définissez vos critères et fixez votre budget. Simple, rapide, sans formulaires interminables.",
+    "step2_title": "Choisissez en confiance.",
+    "step2_desc": "Consultez les statistiques réelles de chaque créateur — abonnés, engagement, audience. Toutes vérifiées, aucune auto-déclarée.",
+    "step3_title": "Validez, ajustez, payez.",
+    "step3_desc": "Approuvez les contenus à votre rythme. Demandez des retouches si besoin. Vous ne payez que ce qui vous convient.",
+    "button": "Publier une offre"
+  },
+  "creators_teaser": {
+    "title_main": "100 000 créateurs MENA.",
+    "title_highlight": "Un seul endroit.",
+    "desc": "Filtrez par région, niche, plateforme, taille d'audience et taux d'engagement. Chaque donnée est vérifiée en temps réel — jamais auto-déclarée.",
+    "tags": ["📍 Algérie 🇩🇿", "📱 TikTok", "👥 Micro (10k–50k)", "🎯 Beauté", "💬 Arabe + Français"],
+    "niches": {
+      "beauty": "Beauté · DZ",
+      "tech": "Tech · DZ",
+      "fashion": "Mode · EAU",
+      "food": "Nourriture · MA"
+    },
+    "button": "Parcourir les Créateurs",
+    "overlay": "Créez un compte pour accéder à l'annuaire"
+  },
+  "why_vybe": {
+    "title": "Pensé pour la MENA. Dès le premier jour.",
+    "feat1_title": "Paiements locaux inclus",
+    "feat1_desc": "Chargily pour l'Algérie (CIB, BaridiMob, Dahabia), Stripe pour le Golfe. Pas de virements compliqués, pas de frais cachés.",
+    "feat2_title": "Données vérifiées, toujours",
+    "feat2_desc": "Les statistiques de chaque créateur sont extraites directement de TikTok, Instagram et YouTube via Phyllo. Ce que vous voyez reflète la réalité.",
+    "feat3_title": "Trois langues, un seul outil",
+    "feat3_desc": "Arabe (avec support RTL), français et anglais. Votre brief est toujours lisible dans la langue de votre créateur."
+  },
+  "pricing": {
+    "title": "Un plan adapté à chaque étape.",
+    "subtitle": "Facturation mensuelle · −20 % avec l'abonnement annuel",
+    "monthly": "Mensuel",
+    "annual": "Annuel",
+    "per_month": "/mois",
+    "button": "Commencer Gratuitement",
+    "footer": "Sans engagement. Sans frais cachés. Les marques algériennes voient les prix affichés en DZD.",
+    "plan1": {
+      "name": "Gratuit",
+      "tag": "Pour tester",
+      "features": ["1 offre active", "1 collaboration", "Annuaire limité", "Analyses essentielles"]
+    },
+    "plan2": {
+      "name": "Pro",
+      "tag": "Recommandé",
+      "features": ["Offres illimitées", "Collaborations illimitées", "Annuaire complet", "Analyses avancées", "10 listes de créateurs"]
+    },
+    "plan3": {
+      "name": "Scale",
+      "tag": "",
+      "features": ["Tout illimité", "Analyses avancées", "Listes illimitées", "Account manager dédié", "Export CSV"]
+    }
+  },
+  "testimonials": {
+    "title": "Ils nous font confiance",
+    "t1_quote": "En deux semaines, nous avions 47 contenus prêts à l'emploi — sans envoyer un seul message. La qualité était au rendez-vous.",
+    "t1_role": "Responsable Marketing · Mode · Algérie",
+    "t2_quote": "L'annuaire de créateurs vaut à lui seul l'abonnement. En dix minutes, nous avions identifié des profils vérifiés que nous n'aurions jamais trouvés autrement.",
+    "t2_role": "Directrice de Marque · Beauté · EAU",
+    "t3_quote": "Avant, je gérais tout sur WhatsApp. Maintenant je publie un brief et les créateurs me contactent directement. Le processus est devenu fluide.",
+    "t3_role": "Fondateur · E-commerce · Maroc"
+  },
+  "cta": {
+    "title": "Prêt à travailler avec les bons créateurs ?",
+    "desc": "Créez votre compte gratuitement et publiez votre première offre en quelques minutes.",
+    "start_free": "Démarrer gratuitement",
+    "view_demo": "Voir une démo"
+  },
+  "footer": {
+    "brands": "Pour les Marques",
+    "creators": "Pour les Créateurs",
+    "pricing": "Tarification",
+    "about": "À Propos",
+    "contact": "Contact",
+    "rights": "© 2025 Vybe. Conçu pour la MENA",
+    "privacy": "Politique de Confidentialité",
+    "terms": "Conditions d'Utilisation",
+    "affiliates": "Affiliés"
+  },
+  "auth": {
+    "login_title": "Bon retour",
+    "login_subtitle": "Connectez-vous à votre compte",
+    "email_label": "E-mail",
+    "email_placeholder": "ahmed@brand.com",
+    "password_label": "Mot de passe",
+    "password_placeholder": "Votre mot de passe",
+    "forgot_password": "Mot de passe oublié ?",
+    "login_button": "Se connecter",
+    "logging_in": "Connexion en cours...",
+    "or": "ou",
+    "google_button": "Continuer avec Google",
+    "no_account": "Vous n'avez pas de compte ?",
+    "signup_link": "S'inscrire",
+    "error_supabase": "Échec de la connexion à Supabase. Vérifiez votre fichier .env.local.",
+    "error_invalid": "E-mail ou mot de passe invalide.",
+    "error_google": "La connexion avec Google a échoué.",
+    "success_login": "Connexion réussie !",
+    "signup_title": "Créez votre compte",
+    "signup_subtitle": "Commencez à vous connecter avec des créateurs dans la région MENA",
+    "i_am_a": "Je suis un(e)",
+    "creator": "Créateur",
+    "brand": "Marque",
+    "fullname_label": "Nom complet",
+    "fullname_placeholder": "Ahmed Benali",
+    "work_email_label": "E-mail professionnel",
+    "password_placeholder_signup": "Min. 8 caractères",
+    "signup_button": "Continuer",
+    "signing_up": "Création du compte...",
+    "already_have_account": "Vous avez déjà un compte ?",
+    "login_link": "Se connecter",
+    "terms_text": "En vous inscrivant, vous acceptez nos",
+    "terms_link": "Conditions",
+    "privacy_text": "et notre",
+    "privacy_link": "Politique de confidentialité",
+    "success_signup": "Compte créé ! Un code de vérification a été envoyé.",
+    "error_signup": "L'inscription a échoué. Veuillez réessayer.",
+    "testimonial_quote": "Vybe a complètement changé notre façon de développer notre marque en Algérie. Trouver les bons créateurs n'a jamais été aussi simple.",
+    "testimonial_author": "Lina M.",
+    "testimonial_role": "Directrice Marketing"
+  },
+  "legal": {
+    "terms_title": "Conditions d'Utilisation",
+    "terms_updated": "Dernière mise à jour : Octobre 2025",
+    "privacy_title": "Politique de Confidentialité",
+    "privacy_updated": "Dernière mise à jour : Octobre 2025",
+    "back_home": "Retour à l'accueil",
+    "content_placeholder": "Le contenu légal sera affiché ici. La documentation officielle est actuellement en cours de rédaction."
+  }
+}

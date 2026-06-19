@@ -1,5 +1,5 @@
 import { supabase } from './supabase';
-import { User, Session, AuthChangeEvent } from '@supabase/supabase-js';
+import { Session, AuthChangeEvent } from '@supabase/supabase-js';
 
 type UserRole = 'brand' | 'creator';
 

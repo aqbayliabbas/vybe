@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any */
 import { supabase } from './supabase';
 
 export interface Creator {
@@ -74,14 +75,14 @@ export const db = {
   async getCampaigns(): Promise<Campaign[]> {
     const { data: contestsData, error: contestsError } = await supabase
       .from('contests')
-      .select('*')
+      .select('*, profiles(*)')
       .order('created_at', { ascending: false });
 
     if (contestsError) throw contestsError;
 
     const { data: dealsData, error: dealsError } = await supabase
       .from('deals')
-      .select('*')
+      .select('*, profiles(*)')
       .order('created_at', { ascending: false });
 
     if (dealsError) throw dealsError;
@@ -89,8 +90,8 @@ export const db = {
     const mappedContests: Campaign[] = (contestsData || []).map(item => ({
       id: item.id,
       name: item.title,
-      brand: 'Pepsi Algeria',
-      brandLogo: undefined,
+      brand: item.profiles?.full_name || 'Marque',
+      brandLogo: item.profiles?.avatar_url || undefined,
       type: 'contest',
       status: item.status === 'live' ? 'live' : item.status === 'draft' ? 'draft' : 'ended',
       submissions: 0,
@@ -118,8 +119,8 @@ export const db = {
       return {
         id: item.id,
         name: item.title,
-        brand: 'Pepsi Algeria',
-        brandLogo: undefined,
+        brand: item.profiles?.full_name || 'Marque',
+        brandLogo: item.profiles?.avatar_url || undefined,
         type: 'deal',
         status: item.status === 'open' ? 'live' : item.status === 'draft' ? 'draft' : 'ended',
         submissions: 0,
@@ -141,8 +142,8 @@ export const db = {
 
     const allCampaigns = [...mappedContests, ...mappedDeals];
 
-    // Fetch submissions / applications counts for each campaign
-    for (const c of allCampaigns) {
+    // Fetch submissions / applications counts for each campaign in PARALLEL
+    await Promise.all(allCampaigns.map(async (c) => {
       if (c.type === 'contest') {
         const { count } = await supabase
           .from('contest_submissions')
@@ -156,7 +157,7 @@ export const db = {
           .eq('deal_id', c.id);
         c.submissions = count || 0;
       }
-    }
+    }));
 
     return allCampaigns;
   },
@@ -165,7 +166,7 @@ export const db = {
     // 1. Try contests first
     const { data: contest } = await supabase
       .from('contests')
-      .select('*')
+      .select('*, profiles(*)')
       .eq('id', id)
       .maybeSingle();
 
@@ -178,8 +179,8 @@ export const db = {
       return {
         id: contest.id,
         name: contest.title,
-        brand: 'Pepsi Algeria',
-        brandLogo: undefined,
+        brand: contest.profiles?.full_name || 'Marque',
+        brandLogo: contest.profiles?.avatar_url || undefined,
         type: 'contest',
         status: contest.status === 'live' ? 'live' : contest.status === 'draft' ? 'draft' : 'ended',
         submissions: count || 0,
@@ -202,7 +203,7 @@ export const db = {
     // 2. Try deals
     const { data: deal } = await supabase
       .from('deals')
-      .select('*')
+      .select('*, profiles(*)')
       .eq('id', id)
       .maybeSingle();
 
@@ -220,8 +221,8 @@ export const db = {
       return {
         id: deal.id,
         name: deal.title,
-        brand: 'Pepsi Algeria',
-        brandLogo: undefined,
+        brand: deal.profiles?.full_name || 'Marque',
+        brandLogo: deal.profiles?.avatar_url || undefined,
         type: 'deal',
         status: deal.status === 'open' ? 'live' : deal.status === 'draft' ? 'draft' : 'ended',
         submissions: count || 0,
@@ -354,9 +355,9 @@ export const db = {
         bid: 0,
         submitted: new Date(item.submitted_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
         status: item.status === 'active' ? 'approved' : 'declined',
-        followers: 125000,
-        avgViews: 42000,
-        engagement: 4.2,
+        followers: 0,
+        avgViews: 0,
+        engagement: 0,
         verified: true,
         feedback: undefined,
         revision_count: 0
@@ -392,9 +393,9 @@ export const db = {
           bid: Number(app.proposed_bid || 0),
           submitted: new Date(sub?.submitted_at || app.applied_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
           status: sub ? (sub.status as Submission['status']) : (app.status === 'approved' ? 'pending' : (app.status as Submission['status'])),
-          followers: 125000,
-          avgViews: 42000,
-          engagement: 4.2,
+          followers: 0,
+          avgViews: 0,
+          engagement: 0,
           verified: true,
           feedback: sub?.brand_feedback || undefined,
           revision_count: sub?.revision_number || 0
@@ -403,6 +404,54 @@ export const db = {
 
       return submissionList;
     }
+  },
+
+  async getCreatorApplications(creatorId: string): Promise<any> {
+    // Run initial queries in parallel to speed up load time
+    const [contestSubsRes, dealAppsRes] = await Promise.all([
+      supabase.from('contest_submissions').select('*, contests(*, profiles(*))').eq('creator_id', creatorId),
+      supabase.from('deal_applications').select('*, deals(*, profiles(*))').eq('creator_id', creatorId)
+    ]);
+
+    const { data: contestSubs, error: contestError } = contestSubsRes;
+    const { data: dealApps, error: dealError } = dealAppsRes;
+
+    if (contestError) console.error("Error fetching contest submissions:", contestError);
+    if (dealError) console.error("Error fetching deal applications:", dealError);
+
+    // 3. Get deal submissions for those applications
+    const dealSubmissions = [];
+    if (dealApps && dealApps.length > 0) {
+      const appIds = dealApps.map((app: any) => app.id);
+      const { data: subs, error: subsError } = await supabase
+        .from('deal_submissions')
+        .select('*')
+        .in('application_id', appIds);
+        
+      if (!subsError && subs) {
+        dealSubmissions.push(...subs);
+      }
+    }
+
+    return {
+      contests: contestSubs || [],
+      deals: dealApps || [],
+      dealSubmissions
+    };
+  },
+
+  async getCreatorAnalytics(creatorId: string): Promise<any> {
+    // Mock analytics for now, but in a real app this would aggregate submission_stats_snapshots
+    return {
+      totalAudience: "0",
+      audienceChange: "0%",
+      avgEngagement: "0%",
+      engagementChange: "0%",
+      totalViews: "0",
+      viewsChange: "0%",
+      conversionRate: "0%",
+      conversionChange: "0%"
+    };
   },
 
   async getSubmissionById(id: string): Promise<Submission | null> {
@@ -425,9 +474,9 @@ export const db = {
         bid: 0,
         submitted: new Date(contestSub.submitted_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
         status: contestSub.status === 'active' ? 'approved' : 'declined',
-        followers: 125000,
-        avgViews: 42000,
-        engagement: 4.2,
+        followers: 0,
+        avgViews: 0,
+        engagement: 0,
         verified: true,
         feedback: undefined,
         revision_count: 0
@@ -454,9 +503,9 @@ export const db = {
         bid: Number(app?.proposed_bid || 0),
         submitted: new Date(dealSub.submitted_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
         status: dealSub.status as Submission['status'],
-        followers: 125000,
-        avgViews: 42000,
-        engagement: 4.2,
+        followers: 0,
+        avgViews: 0,
+        engagement: 0,
         verified: true,
         feedback: dealSub.brand_feedback || undefined,
         revision_count: dealSub.revision_number || 0
@@ -482,9 +531,9 @@ export const db = {
         bid: Number(appDirect.proposed_bid || 0),
         submitted: new Date(appDirect.applied_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
         status: appDirect.status === 'approved' ? 'pending' : (appDirect.status as Submission['status']),
-        followers: 125000,
-        avgViews: 42000,
-        engagement: 4.2,
+        followers: 0,
+        avgViews: 0,
+        engagement: 0,
         verified: true,
         feedback: undefined,
         revision_count: 0
@@ -651,6 +700,107 @@ export const db = {
 
     if (error) throw error;
     return true;
+  },
+
+  // --- CREATOR ONBOARDING ---
+  async saveCreatorOnboarding(userId: string, data: {
+    name: string;
+    avatar_url: string;
+    niche: string;
+    country: string;
+    platform: string;
+    username: string;
+    follower_count: number;
+    avg_views: number;
+    engagement_rate: number;
+  }): Promise<boolean> {
+    try {
+      // 1. Update profiles table with avatar and full_name
+      await supabase.from('profiles').update({ 
+        full_name: data.name,
+        avatar_url: data.avatar_url 
+      }).eq('id', userId);
+
+      // 2. Upsert creator_profiles
+      await supabase.from('creator_profiles').upsert({
+        id: userId,
+        display_name: data.name,
+        niche: [data.niche],
+        country: data.country
+      });
+
+      // 3. Upsert creator_social_accounts
+      const { data: existing } = await supabase
+        .from('creator_social_accounts')
+        .select('id')
+        .eq('creator_id', userId)
+        .eq('platform', data.platform.toLowerCase())
+        .limit(1);
+
+      if (existing && existing.length > 0) {
+        await supabase.from('creator_social_accounts').update({
+          username: data.username,
+          follower_count: data.follower_count,
+          avg_views: data.avg_views,
+          engagement_rate: data.engagement_rate
+        }).eq('id', existing[0].id);
+      } else {
+        await supabase.from('creator_social_accounts').insert({
+          creator_id: userId,
+          platform: data.platform.toLowerCase(),
+          username: data.username,
+          follower_count: data.follower_count,
+          avg_views: data.avg_views,
+          engagement_rate: data.engagement_rate
+        });
+      }
+
+      return true;
+    } catch (e) {
+      console.error('Failed to save creator onboarding', e);
+      return false;
+    }
+  },
+
+  // --- CREATORS ---
+  async getCreators(): Promise<Creator[]> {
+    const { data, error } = await supabase
+      .from('profiles')
+      .select('*')
+      .eq('role', 'creator')
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      console.error(error);
+      return [];
+    }
+
+    // Try to fetch extended data if tables exist
+    // We fetch separately to avoid join errors if tables aren't perfectly aligned
+    const { data: cProfiles } = await supabase.from('creator_profiles').select('*');
+    const { data: cSocials } = await supabase.from('creator_social_accounts').select('*');
+
+    return (data || []).map(p => {
+      const cProf = (cProfiles || []).find(cp => cp.id === p.id) || {};
+      const cSocial = (cSocials || []).find(cs => cs.creator_id === p.id) || {};
+      
+      return {
+        id: p.id,
+        name: p.full_name || 'Unnamed Creator',
+        handle: cSocial.username || `@${(p.full_name || 'user').toLowerCase().replace(/\s+/g, '')}`,
+        platform: cSocial.platform || 'TikTok',
+        flag: cProf.country === 'Algeria' ? '🇩🇿' : '🌍',
+        location: cProf.country || p.location || 'Algeria',
+        followers: cSocial.follower_count || 0,
+        avgViews: cSocial.avg_views || 0,
+        engagement: cSocial.engagement_rate || 0,
+        niche: (cProf.niche && cProf.niche[0]) ? cProf.niche[0] : 'Lifestyle',
+        lang: (cProf.content_language && cProf.content_language[0]) ? cProf.content_language[0] : 'AR',
+        verified: cProf.is_verified || false,
+        avatar: p.avatar_url || 'https://i.pravatar.cc/150?u=' + p.id,
+        bio: cProf.bio || p.bio || ''
+      };
+    });
   }
 };
 

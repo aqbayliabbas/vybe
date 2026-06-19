@@ -1,27 +1,68 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
+const locales = ['en', 'fr', 'ar'];
+const defaultLocale = 'fr';
+
+function getLocale(request: NextRequest): string {
+  const acceptLanguage = request.headers.get("accept-language");
+  if (!acceptLanguage) return defaultLocale;
+
+  const requestedLocales = acceptLanguage
+    .split(',')
+    .map((lang) => {
+      const [locale] = lang.split(';');
+      return locale.trim().split('-')[0];
+    });
+
+  for (const locale of requestedLocales) {
+    if (locales.includes(locale)) {
+      return locale;
+    }
+  }
+
+  return defaultLocale;
+}
+
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  
+  // 1. Language Routing
+  const pathnameHasLocale = locales.some(
+    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
+  );
+
+  let locale = defaultLocale;
+  let pathnameWithoutLocale = pathname;
+
+  if (pathnameHasLocale) {
+    locale = pathname.split('/')[1];
+    pathnameWithoutLocale = pathname.substring(locale.length + 1) || '/';
+  } else {
+    locale = getLocale(request);
+    request.nextUrl.pathname = `/${locale}${pathname}`;
+    return NextResponse.redirect(request.nextUrl);
+  }
+
+  // 2. Authentication Logic
   const sessionCookie = request.cookies.get('vybe_auth_session')?.value;
   const roleCookie = request.cookies.get('vybe_user_role')?.value;
   
   const isAuthenticated = sessionCookie === 'active';
   const role = roleCookie === 'brand' || roleCookie === 'creator' ? roleCookie : null;
 
-  // Define paths to protect
   const protectedPrefixes = [
     '/dashboard',
     '/contests',
     '/deals',
     '/creators',
+    '/creators_side',
     '/analytics',
     '/library',
     '/settings',
     '/upgrade'
   ];
 
-  // Define authentication flow paths (login/signup)
   const authPaths = [
     '/login',
     '/signup',
@@ -29,48 +70,46 @@ export function proxy(request: NextRequest) {
     '/reset-password'
   ];
 
-  // 1. If accessing a protected route without being authenticated → login
-  const isProtected = protectedPrefixes.some(prefix => pathname === prefix || pathname.startsWith(prefix + '/'));
+  const isProtected = protectedPrefixes.some(prefix => pathnameWithoutLocale === prefix || pathnameWithoutLocale.startsWith(prefix + '/'));
   if (isProtected && !isAuthenticated) {
-    const loginUrl = new URL('/login', request.url);
+    const loginUrl = new URL(`/${locale}/login`, request.url);
     return NextResponse.redirect(loginUrl);
   }
 
-  // 2. Role-based Route Protection for Dashboards
-  if (isAuthenticated && pathname.startsWith('/dashboard')) {
-    if (pathname.startsWith('/dashboard/brand') && role === 'creator') {
-      return NextResponse.redirect(new URL('/unauthorized', request.url));
+  if (isAuthenticated) {
+    if (pathnameWithoutLocale.startsWith('/dashboard/brand') && role === 'creator') {
+      return NextResponse.redirect(new URL(`/${locale}/unauthorized`, request.url));
     }
-    if (pathname.startsWith('/dashboard/creator') && role === 'brand') {
-      return NextResponse.redirect(new URL('/unauthorized', request.url));
+    if (pathnameWithoutLocale.startsWith('/creators_side') && role === 'brand') {
+      return NextResponse.redirect(new URL(`/${locale}/unauthorized`, request.url));
+    }
+    if (pathnameWithoutLocale.startsWith('/dashboard/creator') && role === 'brand') {
+      return NextResponse.redirect(new URL(`/${locale}/unauthorized`, request.url));
     }
     
-    // Redirect base /dashboard to the correct sub-dashboard if they try to access it directly
-    if (pathname === '/dashboard' || pathname === '/dashboard/') {
+    if (pathnameWithoutLocale === '/dashboard' || pathnameWithoutLocale === '/dashboard/') {
       if (role === 'creator') {
-        return NextResponse.redirect(new URL('/dashboard/creator', request.url));
+        return NextResponse.redirect(new URL(`/${locale}/creators_side`, request.url));
       } else {
-        return NextResponse.redirect(new URL('/dashboard/brand', request.url));
+        return NextResponse.redirect(new URL(`/${locale}/dashboard/brand`, request.url));
       }
     }
   }
 
-  // 3. If logged in and trying to access auth pages → dashboard
-  const isAuthPath = authPaths.some(path => pathname === path || pathname.startsWith(path + '/'));
+  const isAuthPath = authPaths.some(path => pathnameWithoutLocale === path || pathnameWithoutLocale.startsWith(path + '/'));
   if (isAuthPath && isAuthenticated) {
     if (role === 'creator') {
-      return NextResponse.redirect(new URL('/dashboard/creator', request.url));
+      return NextResponse.redirect(new URL(`/${locale}/creators_side`, request.url));
     } else {
-      return NextResponse.redirect(new URL('/dashboard/brand', request.url));
+      return NextResponse.redirect(new URL(`/${locale}/dashboard/brand`, request.url));
     }
   }
 
   return NextResponse.next();
 }
 
-// Config to run proxy on all routes except static assets
 export const config = {
   matcher: [
-    '/((?!api|_next/static|_next/image|favicon.ico|.*\\.png|.*\\.svg|.*\\.jpg|.*\\.jpeg|.*\\.css).*)',
+    '/((?!api|_next/static|_next/image|favicon.ico|.*\\.png|.*\\.svg|.*\\.jpg|.*\\.jpeg|.*\\.css|.*\\.woff2?|.*\\.otf).*)',
   ],
 };

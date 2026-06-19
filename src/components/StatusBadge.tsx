@@ -14,8 +14,22 @@ const statusConfig: Record<string, { bg: string; text: string; dot?: string }> =
   processing: { bg: 'bg-warning/10', text: 'text-warning-foreground' },
 };
 
+const statusTranslations: Record<string, string> = {
+  live: 'En cours',
+  draft: 'Brouillon',
+  ended: 'Terminé',
+  pending: 'En attente',
+  approved: 'Approuvé',
+  declined: 'Refusé',
+  edits: 'Modifications demandées',
+  deal: 'Offre',
+  contest: 'Concours',
+  paid: 'Payé',
+  processing: 'En traitement',
+};
+
 export function StatusBadge({ status, className }: { status: string; className?: string }) {
-  const label = status === 'edits' ? 'Edits Requested' : status.charAt(0).toUpperCase() + status.slice(1);
+  const label = statusTranslations[status] || status.charAt(0).toUpperCase() + status.slice(1);
   const config = statusConfig[status] || { bg: 'bg-muted', text: 'text-muted-foreground' };
   return (
     <span className={cn(

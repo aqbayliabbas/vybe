@@ -1,0 +1,158 @@
+{
+  "nav": {
+    "brands": "For Brands",
+    "creators": "For Creators",
+    "pricing": "Pricing",
+    "login": "Login",
+    "start": "Get Started"
+  },
+  "hero": {
+    "badge": "Built for MENA, trusted everywhere",
+    "title_main": "Influencer marketing,",
+    "title_highlight": "simply effective",
+    "description": "Find the right creators, collaborate directly, and measure real results without middlemen or surprises.",
+    "start_free": "Start for free",
+    "view_demo": "View a demo"
+  },
+  "stats": {
+    "creators_val": "100K+",
+    "creators_label": "Verified creators",
+    "collabs_val": "1,000+",
+    "collabs_label": "Collaborations",
+    "views_val": "1B+",
+    "views_label": "Organic views"
+  },
+  "deals": {
+    "title": "Collaborate directly. No middlemen.",
+    "desc": "Clear partnerships with verified creators, from selection to payment.",
+    "step1_title": "Post your brief.",
+    "step1_desc": "Describe your needs, define your criteria, and set your budget. Simple, fast, no endless forms.",
+    "step2_title": "Choose with confidence.",
+    "step2_desc": "Check real statistics for each creator — followers, engagement, audience. All verified, none self-reported.",
+    "step3_title": "Validate, adjust, pay.",
+    "step3_desc": "Approve content at your own pace. Request edits if needed. You only pay for what you approve.",
+    "button": "Post an offer"
+  },
+  "creators_teaser": {
+    "title_main": "100K MENA creators.",
+    "title_highlight": "One single place.",
+    "desc": "Filter by region, niche, platform, audience size, and engagement rate. Every data point is verified in real-time — never self-reported.",
+    "tags": ["📍 Algeria 🇩🇿", "📱 TikTok", "👥 Micro (10k–50k)", "🎯 Beauty", "💬 Arabic + French"],
+    "niches": {
+      "beauty": "Beauty · DZ",
+      "tech": "Tech · DZ",
+      "fashion": "Fashion · UAE",
+      "food": "Food · MA"
+    },
+    "button": "Browse Creators",
+    "overlay": "Create an account to access the directory"
+  },
+  "why_vybe": {
+    "title": "Built for MENA. From day one.",
+    "feat1_title": "Local payments included",
+    "feat1_desc": "Chargily for Algeria (CIB, BaridiMob, Dahabia), Stripe for the Gulf. No complicated transfers, no hidden fees.",
+    "feat2_title": "Verified data, always",
+    "feat2_desc": "Creator stats are pulled directly from TikTok, Instagram, and YouTube via Phyllo. What you see reflects reality.",
+    "feat3_title": "Three languages, one tool",
+    "feat3_desc": "Arabic (with RTL support), French, and English. Your brief is always readable in your creator's language."
+  },
+  "pricing": {
+    "title": "A plan tailored for every stage.",
+    "subtitle": "Monthly billing · Save 20% with annual subscription",
+    "monthly": "Monthly",
+    "annual": "Annual",
+    "per_month": "/mo",
+    "button": "Start for Free",
+    "footer": "No commitment. No hidden fees. Algerian brands see prices displayed in DZD.",
+    "plan1": {
+      "name": "Free",
+      "tag": "For testing",
+      "features": ["1 active offer", "1 collaboration", "Limited directory", "Essential analytics"]
+    },
+    "plan2": {
+      "name": "Pro",
+      "tag": "Recommended",
+      "features": ["Unlimited offers", "Unlimited collabs", "Full directory", "Advanced analytics", "10 creator lists"]
+    },
+    "plan3": {
+      "name": "Scale",
+      "tag": "",
+      "features": ["Everything unlimited", "Advanced analytics", "Unlimited lists", "Dedicated account manager", "CSV export"]
+    }
+  },
+  "testimonials": {
+    "title": "Trusted by brands",
+    "t1_quote": "In two weeks, we had 47 pieces of ready-to-use content — without sending a single message. The quality was outstanding.",
+    "t1_role": "Marketing Manager · Fashion · Algeria",
+    "t2_quote": "The creator directory alone is worth the subscription. In ten minutes, we identified verified profiles we would have never found otherwise.",
+    "t2_role": "Brand Director · Beauty · UAE",
+    "t3_quote": "Before, I managed everything on WhatsApp. Now I post a brief and creators contact me directly. The process has become seamless.",
+    "t3_role": "Founder · E-commerce · Morocco"
+  },
+  "cta": {
+    "title": "Ready to work with the right creators?",
+    "desc": "Create your account for free and post your first offer in minutes.",
+    "start_free": "Start for free",
+    "view_demo": "View a demo"
+  },
+  "footer": {
+    "brands": "For Brands",
+    "creators": "For Creators",
+    "pricing": "Pricing",
+    "about": "About Us",
+    "contact": "Contact",
+    "rights": "© 2025 Vybe. Built for MENA",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "affiliates": "Affiliates"
+  },
+  "auth": {
+    "login_title": "Welcome back",
+    "login_subtitle": "Log in to your account",
+    "email_label": "Email",
+    "email_placeholder": "ahmed@brand.com",
+    "password_label": "Password",
+    "password_placeholder": "Your password",
+    "forgot_password": "Forgot password?",
+    "login_button": "Log in",
+    "logging_in": "Logging in...",
+    "or": "or",
+    "google_button": "Continue with Google",
+    "no_account": "Don't have an account?",
+    "signup_link": "Sign up",
+    "error_supabase": "Failed to connect to Supabase. Check your .env.local file.",
+    "error_invalid": "Invalid email or password.",
+    "error_google": "Failed to login with Google.",
+    "success_login": "Login successful!",
+    "signup_title": "Create your account",
+    "signup_subtitle": "Start connecting with creators in the MENA region",
+    "i_am_a": "I am a",
+    "creator": "Creator",
+    "brand": "Brand",
+    "fullname_label": "Full Name",
+    "fullname_placeholder": "Ahmed Benali",
+    "work_email_label": "Work Email",
+    "password_placeholder_signup": "Min. 8 characters",
+    "signup_button": "Continue",
+    "signing_up": "Creating account...",
+    "already_have_account": "Already have an account?",
+    "login_link": "Log in",
+    "terms_text": "By signing up, you agree to our",
+    "terms_link": "Terms",
+    "privacy_text": "and our",
+    "privacy_link": "Privacy Policy",
+    "success_signup": "Account created! A verification code has been sent.",
+    "error_signup": "Signup failed. Please try again.",
+    "testimonial_quote": "Vybe completely changed how we scale our brand in Algeria. Finding the right creators has never been this seamless.",
+    "testimonial_author": "Lina M.",
+    "testimonial_role": "Marketing Director"
+  },
+  "legal": {
+    "terms_title": "Terms of Service",
+    "terms_updated": "Last updated: October 2025",
+    "privacy_title": "Privacy Policy",
+    "privacy_updated": "Last updated: October 2025",
+    "back_home": "Back to Home",
+    "content_placeholder": "Legal content will be displayed here. The official documentation is currently being drafted."
+  }
+}
