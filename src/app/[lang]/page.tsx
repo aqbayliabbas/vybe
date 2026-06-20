@@ -5,6 +5,8 @@ import { Button } from '@/components/ui/button';
 import PricingSection from '@/components/PricingSection';
 import LangSwitcher from '@/components/LangSwitcher';
 import { getDictionary, Locale } from './dictionaries';
+import WaitlistForm from '@/components/WaitlistForm';
+import { FadeIn, StaggerContainer, StaggerItem } from '@/components/animations/FadeIn';
 
 export const metadata: Metadata = {
   title: "Vybe — Le marketing d'influence, pensé pour la MENA",
@@ -41,7 +43,7 @@ export default async function Index({ params }: { params: Promise<{ lang: Locale
             <div className="flex items-center p-1.5 rounded-full border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 backdrop-blur-xl shadow-inner">
               <div className="flex items-center gap-6 px-6 h-[42px] rounded-full bg-white dark:bg-zinc-900 shadow-md border border-black/5 dark:border-white/5">
                 <span className="hover:text-foreground text-[13px] font-semibold text-foreground/80 transition-colors duration-300 cursor-pointer">{dict.nav.brands}</span>
-                <Link href={`/${lang}/creators`} className="hover:text-foreground text-[13px] font-semibold text-foreground/80 transition-colors duration-300">{dict.nav.creators}</Link>
+                <Link href={`/${lang}/for-creators`} className="hover:text-foreground text-[13px] font-semibold text-foreground/80 transition-colors duration-300">{dict.nav.creators}</Link>
                 <a href="#pricing" className="hover:text-foreground text-[13px] font-semibold text-foreground/80 transition-colors duration-300">{dict.nav.pricing}</a>
                 <div className="w-px h-3 bg-black/10 dark:bg-white/10" />
                 <Link href={`/${lang}/login`} className="hover:text-foreground text-[13px] font-semibold text-foreground/80 transition-colors duration-300">
@@ -69,146 +71,152 @@ export default async function Index({ params }: { params: Promise<{ lang: Locale
 
       {/* Hero */}
       <section className="relative overflow-hidden pb-20">
-        <div className="relative mx-auto max-w-[1240px] px-8 pt-24 pb-16 text-center md:pt-32 md:pb-24">
-          <div className="mx-auto inline-flex items-center gap-2 rounded-full glass border border-vybe/20 px-4 py-1.5 text-[12px] font-medium text-muted-foreground mb-8 shadow-card">
-            <Sparkles className="h-3.5 w-3.5 text-vybe" />
-            {dict.hero.badge}
+        <FadeIn delay={0.1} duration={1}>
+          <div className="relative mx-auto max-w-[1240px] px-8 pt-24 pb-16 text-center md:pt-32 md:pb-24">
+            <div className="mx-auto inline-flex items-center gap-2 rounded-full glass border border-vybe/20 px-4 py-1.5 text-[12px] font-medium text-muted-foreground mb-8 shadow-card">
+              <Sparkles className="h-3.5 w-3.5 text-vybe" />
+              {dict.hero.badge}
+            </div>
+            <h1 className="font-heading mx-auto max-w-4xl text-[44px] font-extrabold tracking-tight text-foreground md:text-[64px] md:leading-[1.08] leading-[1.1]">
+              {dict.hero.title_main}{' '}
+              <span className="bg-gradient-to-r from-vybe via-vybe-glow to-vybe-pink bg-clip-text text-transparent">{dict.hero.title_highlight}</span>
+            </h1>
+            <p className="mx-auto mt-6 max-w-xl text-[17px] text-muted-foreground leading-relaxed font-light">
+              {dict.waitlist.hero_desc}
+            </p>
+            <div className="mt-10 w-full flex justify-center">
+              <WaitlistForm dict={dict.waitlist} />
+            </div>
+            <p className="mt-4 text-[12px] text-muted-foreground/50 font-light">{dict.waitlist.no_spam}</p>
+            
+            {/* Simple Text Stats */}
+            <div className="mt-14 flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
+              {[
+                { value: dict.stats.creators_val, label: dict.stats.creators_label },
+                { value: dict.stats.collabs_val, label: dict.stats.collabs_label },
+                { value: dict.stats.views_val, label: dict.stats.views_label },
+              ].map((s) => (
+                <div key={s.label} className="text-center">
+                  <p className="font-heading text-3xl font-extrabold text-foreground tracking-tight">{s.value}</p>
+                  <p className="text-[13px] text-muted-foreground mt-1 font-medium">{s.label}</p>
+                </div>
+              ))}
+            </div>
           </div>
-          <h1 className="font-heading mx-auto max-w-4xl text-[44px] font-extrabold tracking-tight text-foreground md:text-[64px] md:leading-[1.08] leading-[1.1]">
-            {dict.hero.title_main}{' '}
-            <span className="bg-gradient-to-r from-vybe via-vybe-glow to-vybe-pink bg-clip-text text-transparent">{dict.hero.title_highlight}</span>
-          </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-[17px] text-muted-foreground leading-relaxed font-light">
-            {dict.hero.description}
-          </p>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <Link href={`/${lang}/signup`}>
-              <Button size="lg" className="gap-2 text-sm font-semibold rounded-2xl px-8 h-12 shadow-soft transition-all duration-300 hover:opacity-90 hover:shadow-elevated bg-gradient-to-r from-[#f7931e] to-[#ea2d3e] text-white border-0">
-                {dict.hero.start_free} <ArrowRight className="h-4 w-4" />
-              </Button>
-            </Link>
-            <Button variant="outline" size="lg" className="text-sm font-medium rounded-2xl px-8 h-12 bg-transparent border-black/10 dark:border-white/10 text-foreground hover:bg-black/5 dark:hover:bg-white/5 transition-all duration-300">
-              {dict.hero.view_demo}
-            </Button>
-          </div>
-          
-          {/* Simple Text Stats */}
-          <div className="mt-14 flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
-            {[
-              { value: dict.stats.creators_val, label: dict.stats.creators_label },
-              { value: dict.stats.collabs_val, label: dict.stats.collabs_label },
-              { value: dict.stats.views_val, label: dict.stats.views_label },
-            ].map((s) => (
-              <div key={s.label} className="text-center">
-                <p className="font-heading text-3xl font-extrabold text-foreground tracking-tight">{s.value}</p>
-                <p className="text-[13px] text-muted-foreground mt-1 font-medium">{s.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+        </FadeIn>
 
         {/* App Screenshot (Flat Placement) */}
-        <div className="relative mx-auto max-w-[1100px] px-4 sm:px-8 mt-2 mb-20">
-          <img 
-            src="/vybedashboard.png" 
-            alt="Dashboard Vybe" 
-            className="w-full h-auto object-cover rounded-xl sm:rounded-[2rem] shadow-md border border-border/40"
-          />
-        </div>
+        <FadeIn delay={0.4} direction="up">
+          <div className="relative mx-auto max-w-[1100px] px-4 sm:px-8 mt-2 mb-20">
+            <img 
+              src="/vybedashboard.png" 
+              alt="Dashboard Vybe" 
+              className="w-full h-auto object-cover rounded-xl sm:rounded-[2rem] shadow-md border border-border/40"
+            />
+          </div>
+        </FadeIn>
       </section>
 
       {/* How It Works — Deals */}
       <section className="py-24 md:py-32">
         <div className="mx-auto max-w-[1240px] px-8">
-          <h2 className="font-heading mb-4 text-center text-3xl font-bold tracking-tight text-foreground md:text-[40px]">{dict.deals.title}</h2>
-          <p className="mb-16 text-center text-[15px] text-muted-foreground max-w-md mx-auto font-light">{dict.deals.desc}</p>
-          <div className="grid gap-6 md:grid-cols-3">
+          <FadeIn>
+            <h2 className="font-heading mb-4 text-center text-3xl font-bold tracking-tight text-foreground md:text-[40px]">{dict.deals.title}</h2>
+            <p className="mb-16 text-center text-[15px] text-muted-foreground max-w-md mx-auto font-light">{dict.deals.desc}</p>
+          </FadeIn>
+          <StaggerContainer className="grid gap-6 md:grid-cols-3">
             {[
               { step: '01', title: dict.deals.step1_title, desc: dict.deals.step1_desc },
               { step: '02', title: dict.deals.step2_title, desc: dict.deals.step2_desc },
               { step: '03', title: dict.deals.step3_title, desc: dict.deals.step3_desc },
             ].map((s) => (
-              <div key={s.step} className="rounded-3xl glass p-8 shadow-card hover:shadow-soft transition-all duration-500 border border-vybe/10 relative group">
+              <StaggerItem key={s.step} className="rounded-3xl glass p-8 shadow-card hover:shadow-soft transition-all duration-500 border border-vybe/10 relative group">
                 <div className="absolute top-5 ltr:right-6 rtl:left-6 font-heading text-[11px] font-bold text-vybe/25 tracking-wider">{s.step}</div>
                 <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-[#f7931e]/15 to-[#ea2d3e]/10 group-hover:from-[#f7931e]/25 group-hover:to-[#ea2d3e]/20 transition-all duration-500">
                   <BadgeCheck className="h-5 w-5 text-vybe" />
                 </div>
                 <h3 className="font-heading mb-2 text-base font-semibold text-foreground">{s.title}</h3>
                 <p className="text-[14px] leading-relaxed text-muted-foreground font-light">{s.desc}</p>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
-          <div className="mt-12 text-center">
-            <Link href={`/${lang}/deals/new`}>
-              <Button size="lg" className="rounded-2xl px-8 h-12 text-sm font-semibold gap-2 bg-gradient-to-r from-[#f7931e] to-[#ea2d3e] text-white border-0 hover:opacity-90 shadow-soft">{dict.deals.button} <ArrowRight className="h-4 w-4" /></Button>
-            </Link>
-          </div>
+          </StaggerContainer>
+          <FadeIn delay={0.4}>
+            <div className="mt-12 text-center">
+              <Link href={`/${lang}/deals/new`}>
+                <Button size="lg" className="rounded-2xl px-8 h-12 text-sm font-semibold gap-2 bg-gradient-to-r from-[#f7931e] to-[#ea2d3e] text-white border-0 hover:opacity-90 shadow-soft">{dict.deals.button} <ArrowRight className="h-4 w-4" /></Button>
+              </Link>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
       {/* Creator Database Teaser */}
       <section className="py-24 md:py-32">
-        <div className="mx-auto max-w-[1240px] px-8 grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="font-heading text-3xl md:text-[40px] font-bold tracking-tight text-foreground leading-tight">{dict.creators_teaser.title_main} <span className="bg-gradient-to-r from-vybe to-vybe-pink bg-clip-text text-transparent">{dict.creators_teaser.title_highlight}</span></h2>
-            <p className="mt-5 text-[15px] text-muted-foreground font-light leading-relaxed max-w-lg">
-              {dict.creators_teaser.desc}
-            </p>
-            <div className="mt-6 flex flex-wrap gap-2">
-              {dict.creators_teaser.tags.map((f) => (
-                <span key={f} className="rounded-full glass border border-vybe/20 px-3 py-1.5 text-[12px] font-medium text-foreground/80 shadow-card hover:border-vybe/40 transition-colors">{f}</span>
-              ))}
+        <FadeIn>
+          <div className="mx-auto max-w-[1240px] px-8 grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="font-heading text-3xl md:text-[40px] font-bold tracking-tight text-foreground leading-tight">{dict.creators_teaser.title_main} <span className="bg-gradient-to-r from-vybe to-vybe-pink bg-clip-text text-transparent">{dict.creators_teaser.title_highlight}</span></h2>
+              <p className="mt-5 text-[15px] text-muted-foreground font-light leading-relaxed max-w-lg">
+                {dict.creators_teaser.desc}
+              </p>
+              <div className="mt-6 flex flex-wrap gap-2">
+                {dict.creators_teaser.tags.map((f) => (
+                  <span key={f} className="rounded-full glass border border-vybe/20 px-3 py-1.5 text-[12px] font-medium text-foreground/80 shadow-card hover:border-vybe/40 transition-colors">{f}</span>
+                ))}
+              </div>
+              <div className="mt-8">
+                <Link href={`/${lang}/for-creators`}>
+                  <Button size="lg" className="rounded-2xl px-8 h-12 text-sm font-semibold shadow-soft gap-2 bg-gradient-to-r from-[#f7931e] to-[#ea2d3e] text-white border-0 hover:opacity-90">{dict.creators_teaser.button} <ArrowRight className="h-4 w-4" /></Button>
+                </Link>
+              </div>
             </div>
-            <div className="mt-8">
-              <Link href={`/${lang}/creators`}>
-                <Button size="lg" className="rounded-2xl px-8 h-12 text-sm font-semibold shadow-soft gap-2 bg-gradient-to-r from-[#f7931e] to-[#ea2d3e] text-white border-0 hover:opacity-90">{dict.creators_teaser.button} <ArrowRight className="h-4 w-4" /></Button>
-              </Link>
-            </div>
-          </div>
-          <div className="relative">
-            <div className="grid grid-cols-2 gap-4 relative">
-              {[
-                { name: 'Lina M.', niche: dict.creators_teaser.niches.beauty },
-                { name: 'Yacine B.', niche: dict.creators_teaser.niches.tech },
-                { name: 'Sara K.', niche: dict.creators_teaser.niches.fashion },
-                { name: 'Karim H.', niche: dict.creators_teaser.niches.food },
-              ].map((c) => (
-                <div key={c.name} className="rounded-2xl glass p-5 border border-border/30 shadow-card">
-                  <div className="h-12 w-12 rounded-full bg-gradient-to-br from-vybe to-vybe-pink mb-3" />
-                  <p className="font-heading text-[13px] font-semibold text-foreground blur-[3px] select-none">{c.name}</p>
-                  <p className="text-[11px] text-muted-foreground mt-1">{c.niche}</p>
-                  <div className="mt-3 flex items-center gap-2 text-[11px] text-muted-foreground">
-                    <Filter className="h-3 w-3" /> <span className="blur-[2px] select-none">42.3k</span>
+            <div className="relative">
+              <div className="grid grid-cols-2 gap-4 relative">
+                {[
+                  { name: 'Lina M.', niche: dict.creators_teaser.niches.beauty },
+                  { name: 'Yacine B.', niche: dict.creators_teaser.niches.tech },
+                  { name: 'Sara K.', niche: dict.creators_teaser.niches.fashion },
+                  { name: 'Karim H.', niche: dict.creators_teaser.niches.food },
+                ].map((c) => (
+                  <div key={c.name} className="rounded-2xl glass p-5 border border-border/30 shadow-card">
+                    <div className="h-12 w-12 rounded-full bg-gradient-to-br from-vybe to-vybe-pink mb-3" />
+                    <p className="font-heading text-[13px] font-semibold text-foreground blur-[3px] select-none">{c.name}</p>
+                    <p className="text-[11px] text-muted-foreground mt-1">{c.niche}</p>
+                    <div className="mt-3 flex items-center gap-2 text-[11px] text-muted-foreground">
+                      <Filter className="h-3 w-3" /> <span className="blur-[2px] select-none">42.3k</span>
+                    </div>
                   </div>
+                ))}
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/40 to-background/80 rounded-3xl flex items-end justify-center pb-8 pointer-events-none">
+                  <span className="rounded-full glass-strong px-4 py-2 text-[12px] font-semibold text-foreground shadow-soft border border-border/30">{dict.creators_teaser.overlay}</span>
                 </div>
-              ))}
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/40 to-background/80 rounded-3xl flex items-end justify-center pb-8 pointer-events-none">
-                <span className="rounded-full glass-strong px-4 py-2 text-[12px] font-semibold text-foreground shadow-soft border border-border/30">{dict.creators_teaser.overlay}</span>
               </div>
             </div>
           </div>
-        </div>
+        </FadeIn>
       </section>
 
       {/* Why Vybe */}
       <section className="py-24 md:py-32">
         <div className="mx-auto max-w-[1240px] px-8">
-          <h2 className="font-heading mb-16 text-center text-3xl font-bold tracking-tight text-foreground md:text-[40px]">{dict.why_vybe.title}</h2>
-          <div className="grid gap-6 md:grid-cols-3">
+          <FadeIn>
+            <h2 className="font-heading mb-16 text-center text-3xl font-bold tracking-tight text-foreground md:text-[40px]">{dict.why_vybe.title}</h2>
+          </FadeIn>
+          <StaggerContainer className="grid gap-6 md:grid-cols-3">
             {[
               { icon: Globe, title: dict.why_vybe.feat1_title, desc: dict.why_vybe.feat1_desc },
               { icon: BadgeCheck, title: dict.why_vybe.feat2_title, desc: dict.why_vybe.feat2_desc },
               { icon: Languages, title: dict.why_vybe.feat3_title, desc: dict.why_vybe.feat3_desc },
             ].map((f) => (
-              <div key={f.title} className="rounded-3xl glass p-8 shadow-card hover:shadow-soft transition-all duration-500 group border border-vybe/10 hover:border-vybe/25">
+              <StaggerItem key={f.title} className="rounded-3xl glass p-8 shadow-card hover:shadow-soft transition-all duration-500 group border border-vybe/10 hover:border-vybe/25">
                 <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-[#f7931e]/15 to-[#ea2d3e]/10 group-hover:scale-110 group-hover:from-[#f7931e]/25 group-hover:to-[#ea2d3e]/20 transition-all duration-500">
                   <f.icon className="h-5 w-5 text-vybe" />
                 </div>
                 <h3 className="font-heading mb-2 text-base font-semibold text-foreground">{f.title}</h3>
                 <p className="text-[14px] leading-relaxed text-muted-foreground font-light">{f.desc}</p>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
@@ -218,14 +226,16 @@ export default async function Index({ params }: { params: Promise<{ lang: Locale
       {/* Testimonials */}
       <section className="py-24 md:py-32">
         <div className="mx-auto max-w-[1240px] px-8">
-          <h2 className="font-heading mb-16 text-center text-3xl font-bold tracking-tight text-foreground md:text-[40px]">{dict.testimonials.title}</h2>
-          <div className="grid gap-6 md:grid-cols-3">
+          <FadeIn>
+            <h2 className="font-heading mb-16 text-center text-3xl font-bold tracking-tight text-foreground md:text-[40px]">{dict.testimonials.title}</h2>
+          </FadeIn>
+          <StaggerContainer className="grid gap-6 md:grid-cols-3">
             {[
               { quote: dict.testimonials.t1_quote, name: 'Anis B.', role: dict.testimonials.t1_role },
               { quote: dict.testimonials.t2_quote, name: 'Sara M.', role: dict.testimonials.t2_role },
               { quote: dict.testimonials.t3_quote, name: 'Youssef K.', role: dict.testimonials.t3_role },
             ].map((t) => (
-              <div key={t.name} className="rounded-3xl glass p-8 shadow-card border border-vybe/10 relative overflow-hidden">
+              <StaggerItem key={t.name} className="rounded-3xl glass p-8 shadow-card border border-vybe/10 relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-[200px] h-[200px] rounded-full bg-[oklch(0.82_0.17_55_/_0.08)] blur-[60px] pointer-events-none" />
                 <div className="relative">
                   <div className="flex items-center gap-1 mb-5">
@@ -239,34 +249,36 @@ export default async function Index({ params }: { params: Promise<{ lang: Locale
                     <p className="text-[11px] text-muted-foreground mt-0.5">{t.role}</p>
                   </div>
                 </div>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
       {/* CTA Section */}
       <section className="py-24 md:py-32">
-        <div className="mx-auto max-w-[1240px] px-8 text-center">
-          <div className="rounded-[28px] bg-gradient-to-br from-[#f7931e] via-[#e85820] to-[#ea2d3e] p-14 md:p-20 shadow-elevated relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full bg-[oklch(0.90_0.12_60_/_0.25)] blur-[100px] pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-[300px] h-[300px] rounded-full bg-[oklch(0.55_0.20_20_/_0.30)] blur-[80px] pointer-events-none" />
-            <div className="relative">
-              <h2 className="font-heading text-3xl font-bold text-white md:text-[44px] mb-4 leading-tight">{dict.cta.title}</h2>
-              <p className="text-[15px] text-white/70 max-w-md mx-auto mb-10 font-light">{dict.cta.desc}</p>
-              <div className="flex flex-wrap items-center justify-center gap-4">
-                <Link href={`/${lang}/signup`}>
-                  <Button size="lg" className="bg-white text-[#ea2d3e] hover:bg-white/95 font-semibold rounded-2xl px-8 h-12 text-sm shadow-soft transition-all duration-300 hover:shadow-elevated gap-2">
-                    {dict.cta.start_free} <ArrowRight className="h-4 w-4" />
+        <FadeIn>
+          <div className="mx-auto max-w-[1240px] px-8 text-center">
+            <div className="rounded-[28px] bg-gradient-to-br from-[#f7931e] via-[#e85820] to-[#ea2d3e] p-14 md:p-20 shadow-elevated relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full bg-[oklch(0.90_0.12_60_/_0.25)] blur-[100px] pointer-events-none" />
+              <div className="absolute bottom-0 left-0 w-[300px] h-[300px] rounded-full bg-[oklch(0.55_0.20_20_/_0.30)] blur-[80px] pointer-events-none" />
+              <div className="relative">
+                <h2 className="font-heading text-3xl font-bold text-white md:text-[44px] mb-4 leading-tight">{dict.cta.title}</h2>
+                <p className="text-[15px] text-white/70 max-w-md mx-auto mb-10 font-light">{dict.cta.desc}</p>
+                <div className="flex flex-wrap items-center justify-center gap-4">
+                  <Link href={`/${lang}/signup`}>
+                    <Button size="lg" className="bg-white text-[#ea2d3e] hover:bg-white/95 font-semibold rounded-2xl px-8 h-12 text-sm shadow-soft transition-all duration-300 hover:shadow-elevated gap-2">
+                      {dict.cta.start_free} <ArrowRight className="h-4 w-4" />
+                    </Button>
+                  </Link>
+                  <Button variant="outline" size="lg" className="bg-transparent border-white/30 text-white hover:bg-white/10 hover:text-white rounded-2xl px-8 h-12 text-sm transition-all duration-300">
+                    {dict.cta.view_demo}
                   </Button>
-                </Link>
-                <Button variant="outline" size="lg" className="bg-transparent border-white/30 text-white hover:bg-white/10 hover:text-white rounded-2xl px-8 h-12 text-sm transition-all duration-300">
-                  {dict.cta.view_demo}
-                </Button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </FadeIn>
       </section>
 
       {/* Footer */}
@@ -342,7 +354,7 @@ export default async function Index({ params }: { params: Promise<{ lang: Locale
                     </p>
                     <ul className="space-y-3 text-[14px] text-muted-foreground">
                       <li><span className="hover:text-foreground transition-colors cursor-pointer">{dict.footer.brands}</span></li>
-                      <li><Link href={`/${lang}/creators`} className="hover:text-foreground transition-colors">{dict.footer.creators}</Link></li>
+                      <li><Link href={`/${lang}/for-creators`} className="hover:text-foreground transition-colors">{dict.footer.creators}</Link></li>
                       <li><a href="#pricing" className="hover:text-foreground transition-colors">{dict.footer.pricing}</a></li>
                       <li><span className="hover:text-foreground transition-colors cursor-pointer">{dict.footer.about}</span></li>
                     </ul>
