@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import LangSwitcher from '@/components/LangSwitcher';
 import { getDictionary, Locale } from '../dictionaries';
 import { FadeIn, StaggerContainer, StaggerItem } from '@/components/animations/FadeIn';
+import { VybeLogo } from '@/components/VybeLogo';
 
 export const metadata: Metadata = {
   title: "Vybe for Creators — Monetize your audience",
@@ -29,11 +30,8 @@ export default async function CreatorLanding({ params }: { params: Promise<{ lan
       <nav className="fixed top-6 inset-x-0 z-50 pointer-events-none">
         <div className="mx-auto flex items-center justify-between px-8 max-w-[1240px] pointer-events-auto">
           {/* Logo */}
-          <Link href={`/${lang}`} className="flex items-center gap-2.5 px-2">
-            <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-gradient-to-br from-[#f7931e] to-[#ea2d3e] shadow-md">
-              <Zap className="h-4 w-4 text-white fill-white" />
-            </div>
-            <span className="font-heading text-xl font-bold tracking-tight text-foreground drop-shadow-sm">Vybe</span>
+          <Link href={`/${lang}`} className="flex items-center px-2">
+            <VybeLogo />
           </Link>
 
           {/* Right Section - Double Pill Container */}
@@ -240,12 +238,9 @@ export default async function CreatorLanding({ params }: { params: Promise<{ lan
             <div className="px-10 pt-12 pb-10">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-14 md:gap-10">
                 <div className="flex flex-col gap-8">
-                  <div className="flex items-center gap-2.5">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-[#f7931e] to-[#ea2d3e] shadow-card">
-                      <Zap className="h-4.5 w-4.5 text-white fill-white" />
-                    </div>
-                    <span className="font-heading text-2xl font-bold tracking-tight text-foreground">Vybe</span>
-                  </div>
+                  <div className="flex items-center">
+          <VybeLogo className="scale-100 origin-left" />
+        </div>
 
                   <div className="flex items-center gap-2.5">
                     <a href="#" aria-label="Instagram" className="flex h-10 w-10 items-center justify-center rounded-full border border-border/60 text-muted-foreground hover:text-vybe hover:border-vybe/40 hover:bg-vybe/5 transition-all duration-300">

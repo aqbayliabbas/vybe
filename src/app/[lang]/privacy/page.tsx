@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowLeft, Zap, Shield, Eye, Database, Lock, Globe, Mail } from 'lucide-react';
+import { ArrowLeft, Shield, Eye, Database, Lock, Globe, Mail } from 'lucide-react';
+import { VybeLogo } from '@/components/VybeLogo';
 import { getDictionary, Locale } from '../dictionaries';
 
 export const metadata: Metadata = {
@@ -50,11 +51,8 @@ export default async function PrivacyPage({ params }: { params: Promise<{ lang: 
       {/* Navbar */}
       <nav className="fixed top-6 inset-x-0 z-50">
         <div className="mx-auto flex items-center justify-between px-8 max-w-[1240px]">
-          <Link href={`/${lang}`} className="flex items-center gap-2.5 px-2 hover:opacity-90 transition-opacity">
-            <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-gradient-to-br from-[#f7931e] to-[#ea2d3e] shadow-md">
-              <Zap className="h-4 w-4 text-white fill-white" />
-            </div>
-            <span className="font-heading text-xl font-bold tracking-tight text-foreground drop-shadow-sm">Vybe</span>
+          <Link href={`/${lang}`} className="flex items-center px-2 hover:opacity-90 transition-opacity">
+            <VybeLogo />
           </Link>
           <Link href={`/${lang}`} className="flex items-center gap-2 text-[13px] font-semibold text-muted-foreground hover:text-foreground transition-colors group">
             <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform ltr:block rtl:hidden" />

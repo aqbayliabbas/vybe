@@ -7,6 +7,7 @@ import LangSwitcher from '@/components/LangSwitcher';
 import { getDictionary, Locale } from './dictionaries';
 import WaitlistForm from '@/components/WaitlistForm';
 import { FadeIn, StaggerContainer, StaggerItem } from '@/components/animations/FadeIn';
+import { VybeLogo } from '@/components/VybeLogo';
 
 export const metadata: Metadata = {
   title: "Vybe — Le marketing d'influence, pensé pour la MENA",
@@ -30,11 +31,8 @@ export default async function Index({ params }: { params: Promise<{ lang: Locale
       <nav className="fixed top-6 inset-x-0 z-50 pointer-events-none">
         <div className="mx-auto flex items-center justify-between px-8 max-w-[1240px] pointer-events-auto">
           {/* Logo */}
-          <div className="flex items-center gap-2.5 px-2">
-            <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-gradient-to-br from-[#f7931e] to-[#ea2d3e] shadow-md">
-              <Zap className="h-4 w-4 text-white fill-white" />
-            </div>
-            <span className="font-heading text-xl font-bold tracking-tight text-foreground drop-shadow-sm">Vybe</span>
+          <div className="flex items-center px-2">
+            <VybeLogo className="scale-90 sm:scale-100 origin-left" />
           </div>
 
           {/* Right Section - Double Pill Container */}
@@ -300,12 +298,7 @@ export default async function Index({ params }: { params: Promise<{ lang: Locale
                 {/* Left: Brand + Social + Contact */}
                 <div className="flex flex-col gap-8">
                   {/* Logo */}
-                  <div className="flex items-center gap-2.5">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-[#f7931e] to-[#ea2d3e] shadow-card">
-                      <Zap className="h-4.5 w-4.5 text-white fill-white" />
-                    </div>
-                    <span className="font-heading text-2xl font-bold tracking-tight text-foreground">Vybe</span>
-                  </div>
+                  <VybeLogo />
 
                   {/* Social icons */}
                   <div className="flex items-center gap-2.5">

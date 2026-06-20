@@ -4,6 +4,7 @@
 import { useState } from 'react';
 import { Zap, ArrowRight, Loader2, CheckCircle2, Mail } from 'lucide-react';
 import { useAuth } from '@/components/AuthProvider';
+import { VybeLogo } from '@/components/VybeLogo';
 
 export default function WelcomePage() {
   const { user } = useAuth();
@@ -31,11 +32,8 @@ export default function WelcomePage() {
 
       <div className="relative w-full max-w-lg mx-auto px-6 py-16 text-center">
         {/* Logo */}
-        <div className="flex items-center justify-center gap-2.5 mb-12">
-          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-vybe to-vybe-glow shadow-card">
-            <Zap className="h-4.5 w-4.5 text-white fill-white" />
-          </div>
-          <span className="font-heading text-2xl font-bold tracking-tight text-foreground">Vybe</span>
+        <div className="flex items-center justify-center mb-12">
+          <VybeLogo className="scale-110 origin-center" />
         </div>
 
         {/* Badge */}

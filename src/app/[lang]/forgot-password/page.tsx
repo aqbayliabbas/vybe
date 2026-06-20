@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Zap, ArrowRight, ArrowLeft, Loader2 } from 'lucide-react';
 import { authService } from '@/lib/auth';
 import { toast } from 'sonner';
+import { VybeLogo } from '@/components/VybeLogo';
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState('');
@@ -43,11 +44,8 @@ export default function ForgotPasswordPage() {
       </div>
 
       <div className="relative w-full max-w-md mx-auto px-6">
-        <div className="flex items-center justify-center gap-2.5 mb-10">
-          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-vybe to-vybe-glow shadow-card">
-            <Zap className="h-4.5 w-4.5 text-white fill-white" />
-          </div>
-          <span className="font-heading text-2xl font-bold tracking-tight text-foreground">Vybe</span>
+        <div className="flex items-center justify-center mb-12">
+          <VybeLogo className="scale-110 origin-center" />
         </div>
 
         <div className="rounded-3xl glass border border-border/30 shadow-soft p-8 text-center">

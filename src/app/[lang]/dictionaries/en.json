@@ -37,7 +37,13 @@
     "title_main": "100K MENA creators.",
     "title_highlight": "One single place.",
     "desc": "Filter by region, niche, platform, audience size, and engagement rate. Every data point is verified in real-time — never self-reported.",
-    "tags": ["📍 Algeria 🇩🇿", "📱 TikTok", "👥 Micro (10k–50k)", "🎯 Beauty", "💬 Arabic + French"],
+    "tags": [
+      "📍 Algeria 🇩🇿",
+      "📱 TikTok",
+      "👥 Micro (10k–50k)",
+      "🎯 Beauty",
+      "💬 Arabic + French"
+    ],
     "niches": {
       "beauty": "Beauty · DZ",
       "tech": "Tech · DZ",
@@ -67,17 +73,34 @@
     "plan1": {
       "name": "Free",
       "tag": "For testing",
-      "features": ["1 active offer", "1 collaboration", "Limited directory", "Essential analytics"]
+      "features": [
+        "1 active offer",
+        "1 collaboration",
+        "Limited directory",
+        "Essential analytics"
+      ]
     },
     "plan2": {
       "name": "Pro",
       "tag": "Recommended",
-      "features": ["Unlimited offers", "Unlimited collabs", "Full directory", "Advanced analytics", "10 creator lists"]
+      "features": [
+        "Unlimited offers",
+        "Unlimited collabs",
+        "Full directory",
+        "Advanced analytics",
+        "10 creator lists"
+      ]
     },
     "plan3": {
       "name": "Scale",
       "tag": "",
-      "features": ["Everything unlimited", "Advanced analytics", "Unlimited lists", "Dedicated account manager", "CSV export"]
+      "features": [
+        "Everything unlimited",
+        "Advanced analytics",
+        "Unlimited lists",
+        "Dedicated account manager",
+        "CSV export"
+      ]
     }
   },
   "testimonials": {
@@ -156,7 +179,7 @@
     "content_placeholder": "Legal content will be displayed here. The official documentation is currently being drafted."
   },
   "waitlist": {
-    "hero_desc": "Vybe for Brands is launching soon. Be the first to connect with 100K+ verified MENA creators — join the waitlist now.",
+    "hero_desc": "Vybe for Brands is launching soon. Be the first to connect with 100K+ verified MENA creators join the waitlist now.",
     "no_spam": "No spam, ever. We'll only reach out when your access is ready.",
     "placeholder": "your@brand.com",
     "joining": "Joining…",

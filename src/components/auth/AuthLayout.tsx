@@ -2,6 +2,7 @@
 import { ReactNode } from 'react';
 import Link from 'next/link';
 import { Zap, Quote } from 'lucide-react';
+import { VybeLogo } from '@/components/VybeLogo';
 import { Locale } from '@/app/[lang]/dictionaries';
 
 interface AuthLayoutProps {
@@ -22,13 +23,9 @@ export default function AuthLayout({ children, dict, lang }: AuthLayoutProps) {
         {/* Animated grid background */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
 
-        {/* Logo */}
-        <div className="relative z-10 flex items-center gap-2.5">
-          <Link href={`/${lang}`} className="flex items-center gap-2.5 hover:opacity-90 transition-opacity">
-            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-vybe to-vybe-pink shadow-lg">
-              <Zap className="h-5 w-5 text-white fill-white" />
-            </div>
-            <span className="font-heading text-2xl font-bold tracking-tight text-white">Vybe</span>
+        <div className="relative z-10 flex items-center">
+          <Link href={`/${lang}`} className="flex items-center hover:opacity-90 transition-opacity">
+            <VybeLogo variant="white" className="scale-110 origin-left" />
           </Link>
         </div>
 
@@ -54,11 +51,8 @@ export default function AuthLayout({ children, dict, lang }: AuthLayoutProps) {
       <div className="flex-1 flex flex-col justify-center relative">
         {/* Mobile Header */}
         <div className="md:hidden flex items-center gap-2.5 absolute top-8 left-6 z-20">
-          <Link href={`/${lang}`} className="flex items-center gap-2.5">
-            <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-vybe to-vybe-glow shadow-sm">
-              <Zap className="h-4 w-4 text-white fill-white" />
-            </div>
-            <span className="font-heading text-xl font-bold tracking-tight text-foreground">Vybe</span>
+          <Link href={`/${lang}`} className="flex items-center px-2">
+            <VybeLogo className="scale-90 origin-left" />
           </Link>
         </div>
 
