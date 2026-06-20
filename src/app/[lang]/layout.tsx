@@ -43,6 +43,9 @@ const kobanzeen = localFont({
 export const metadata: Metadata = {
   title: "Vybe - Algeria Connect",
   description: "Connect with Algeria's top brands & creators",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export async function generateStaticParams() {
