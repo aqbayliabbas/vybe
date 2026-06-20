@@ -211,7 +211,7 @@ export default function ContestDetailPage({ params }: { params: Promise<{ id: st
             <div className="rounded-3xl border border-border/40 bg-white/90 shadow-card">
               <div className="px-6 py-5">
                 <h3 className="font-heading text-base font-semibold text-foreground">Classement Complet</h3>
-                <p className="text-[12px] text-muted-foreground">Classement en direct — mis à jour toutes les 6 heures via Phyllo</p>
+                <p className="text-[12px] text-muted-foreground">Classement en direct — mis à jour toutes les 6 heures</p>
               </div>
               <div className="overflow-x-auto">
                 <table className="w-full">

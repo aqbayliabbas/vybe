@@ -278,7 +278,7 @@ export default function CreatorDatabasePage() {
               className="rounded border-border/60 text-vybe focus:ring-vybe h-3.5 w-3.5 cursor-pointer"
             />
             <label htmlFor="verifiedOnly" className="text-[12px] font-medium text-foreground cursor-pointer select-none">
-              Vérifié par Phyllo uniquement
+              Vérifié automatiquement
             </label>
           </div>
         </div>

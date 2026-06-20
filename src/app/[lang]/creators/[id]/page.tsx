@@ -29,7 +29,7 @@ const fmt = (n: number) => {
 
 
 
-// Mock Top Videos (Phyllo Synced)
+// Mock Top Videos
 const mockTopVideos: any[] = [];
 
 // Mock Collabs
@@ -86,7 +86,7 @@ export default function CreatorProfilePage({ params }: { params: Promise<{ id: s
                 <h1 className="font-heading text-2xl font-bold text-foreground">{creator.name}</h1>
                 {creator.verified && (
                   <span className="inline-flex items-center gap-1 shrink-0 rounded-full bg-success/15 border border-success/30 px-2 py-0.5 text-[10px] font-semibold text-success">
-                    <BadgeCheck className="h-3.5 w-3.5" /> Vérifié par Phyllo
+                    <BadgeCheck className="h-3.5 w-3.5" /> Vérifié
                   </span>
                 )}
               </div>
@@ -134,31 +134,7 @@ export default function CreatorProfilePage({ params }: { params: Promise<{ id: s
             </div>
           </div>
 
-          {/* Social accounts sync summary */}
-          <div className="rounded-3xl border border-border/40 bg-white/90 p-5 shadow-card space-y-3">
-            <h3 className="font-heading text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">Profils connectés</h3>
-            
-            <div className="space-y-2">
-              <div className="flex items-center justify-between rounded-xl bg-muted/40 p-2.5">
-                <span className="text-[12px] font-semibold text-foreground flex items-center gap-1.5 capitalize">
-                  <Tv className="h-3.5 w-3.5 text-black shrink-0" /> {creator.platform}
-                </span>
-                <span className="text-[10px] bg-success/15 text-success rounded-full px-2 py-0.5 font-bold">Vérifié</span>
-              </div>
-              <div className="flex items-center justify-between rounded-xl bg-muted/20 p-2.5 text-muted-foreground/60 border border-dashed border-border/60">
-                <span className="text-[12px] font-medium flex items-center gap-1.5">
-                  <Camera className="h-3.5 w-3.5 shrink-0" /> Instagram
-                </span>
-                <span className="text-[9px] uppercase tracking-wider">Non connecté</span>
-              </div>
-              <div className="flex items-center justify-between rounded-xl bg-muted/20 p-2.5 text-muted-foreground/60 border border-dashed border-border/60">
-                <span className="text-[12px] font-medium flex items-center gap-1.5">
-                  <PlaySquare className="h-3.5 w-3.5 shrink-0" /> YouTube
-                </span>
-                <span className="text-[9px] uppercase tracking-wider">Non connecté</span>
-              </div>
-            </div>
-          </div>
+
         </div>
 
         {/* Analytics & Videos Grid */}
@@ -185,7 +161,7 @@ export default function CreatorProfilePage({ params }: { params: Promise<{ id: s
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <h3 className="font-heading text-[16px] font-semibold text-foreground">Contenu le plus performant</h3>
-              <span className="text-[11px] text-muted-foreground flex items-center gap-1"><Info className="h-3.5 w-3.5" /> Suivi via l'API Phyllo</span>
+              <span className="text-[11px] text-muted-foreground flex items-center gap-1"><Info className="h-3.5 w-3.5" /> Suivi automatisé</span>
             </div>
 
             <div className="grid gap-4 sm:grid-cols-3">

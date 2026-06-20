@@ -182,7 +182,7 @@ export default function DealDetailPage({ params }: { params: Promise<{ id: strin
                   <div className="min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
                       <p className="text-[13px] font-semibold text-foreground truncate">{s.creator}</p>
-                      {s.verified && <span className="shrink-0 rounded-full bg-success/10 border border-success/20 px-2 py-0.5 text-[10px] font-semibold text-success">✓ Phyllo</span>}
+                      {s.verified && <span className="shrink-0 rounded-full bg-success/10 border border-success/20 px-2 py-0.5 text-[10px] font-semibold text-success">✓ Vérifié</span>}
                     </div>
                     <p className="text-[11px] text-muted-foreground">{s.handle} · {s.platform}</p>
                   </div>

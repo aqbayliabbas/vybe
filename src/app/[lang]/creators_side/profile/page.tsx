@@ -110,58 +110,7 @@ export default function ProfilePage() {
               </div>
             </div>
 
-            <div className="pt-6 mt-6 border-t border-border/40">
-              <h3 className="font-heading text-[15px] font-bold text-foreground mb-4">Comptes connectés</h3>
-              <div className="space-y-3">
-                <div className="flex items-center justify-between p-3 rounded-2xl bg-muted/20 border border-border/40">
-                  <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-xl bg-black text-white flex items-center justify-center shadow-sm">
-                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="text-[13px] font-bold text-foreground">TikTok</p>
-                      <p className="text-[11px] font-medium text-muted-foreground">450K Abonnés</p>
-                    </div>
-                  </div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-success-foreground bg-success/10 px-2.5 py-1 rounded-md border border-success/20">Synchronisé</span>
-                </div>
-                
-                <div className="flex items-center justify-between p-3 rounded-2xl bg-muted/20 border border-border/40">
-                  <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#f09433] via-[#e6683c] to-[#bc1888] text-white flex items-center justify-center shadow-sm">
-                      <Camera className="w-4 h-4 text-vybe-pink" />
-                    </div>
-                    <div>
-                      <p className="text-[13px] font-bold text-foreground">Instagram</p>
-                      <p className="text-[11px] font-medium text-muted-foreground">280K Abonnés</p>
-                    </div>
-                  </div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-success-foreground bg-success/10 px-2.5 py-1 rounded-md border border-success/20">Synchronisé</span>
-                </div>
 
-                <div className="flex items-center justify-between p-3 rounded-2xl bg-white border border-border/40 border-dashed">
-                  <div className="flex items-center gap-3 opacity-60">
-                    <div className="w-9 h-9 rounded-xl bg-red-600 text-white flex items-center justify-center shadow-sm">
-                      <Video className="w-4 h-4 text-red-500" />
-                    </div>
-                    <div>
-                      <p className="text-[13px] font-bold text-foreground">YouTube</p>
-                      <p className="text-[11px] font-medium text-muted-foreground">Non connecté</p>
-                    </div>
-                  </div>
-                  <button className="text-[11px] font-bold uppercase tracking-wider text-vybe hover:text-vybe-dark transition-colors">Connecter</button>
-                </div>
-                
-                <div className="mt-4 flex justify-center">
-                  <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground/60 flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-success-foreground shadow-[0_0_8px_oklch(0.58_0.16_155_/_0.8)]" />
-                    Propulsé par Phyllo
-                  </p>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
 

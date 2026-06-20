@@ -52,7 +52,7 @@
     "feat1_title": "Paiements locaux inclus",
     "feat1_desc": "Chargily pour l'Algérie (CIB, BaridiMob, Dahabia), Stripe pour le Golfe. Pas de virements compliqués, pas de frais cachés.",
     "feat2_title": "Données vérifiées, toujours",
-    "feat2_desc": "Les statistiques de chaque créateur sont extraites directement de TikTok, Instagram et YouTube via Phyllo. Ce que vous voyez reflète la réalité.",
+    "feat2_desc": "Les statistiques de chaque créateur sont extraites directement de TikTok, Instagram et YouTube. Ce que vous voyez reflète la réalité.",
     "feat3_title": "Trois langues, un seul outil",
     "feat3_desc": "Arabe (avec support RTL), français et anglais. Votre brief est toujours lisible dans la langue de votre créateur."
   },
@@ -186,7 +186,7 @@
     "w3_title": "Créez et soyez payé",
     "w3_desc": "Soumettez votre contenu, faites-le approuver et retirez vos gains directement sur votre compte bancaire local.",
     "integrations_title": "Vérifié par les API officielles",
-    "integrations_desc": "Nous utilisons Phyllo pour nous connecter en toute sécurité. Vos données ne sont jamais auto-déclarées, ce qui instaure une confiance totale avec les marques.",
+    "integrations_desc": "Nous utilisons des intégrations directes pour nous connecter en toute sécurité aux plateformes. Vos données ne sont jamais auto-déclarées, ce qui instaure une confiance totale avec les marques.",
     "testimonials_title": "Adoré par les créateurs MENA",
     "faq_title": "Foire aux questions",
     "faq1_q": "Y a-t-il un nombre minimum d'abonnés requis ?",

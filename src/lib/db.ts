@@ -322,6 +322,55 @@ export const db = {
     };
   },
 
+  async applyForDeal(dealId: string, creatorId: string, videoUrl: string, proposal: string, proposedBid: number = 0): Promise<boolean> {
+    try {
+      // 1. Create a deal_application first since it's the parent record.
+      const appId = typeof window !== 'undefined' ? crypto.randomUUID() : Math.random().toString(36).substring(2);
+      
+      const { error: appError } = await supabase
+        .from('deal_applications')
+        .insert({
+          id: appId,
+          deal_id: dealId,
+          creator_id: creatorId,
+          status: 'pending',
+          proposed_bid: proposedBid,
+          pitch: proposal,
+          cover_letter: proposal
+        });
+
+      if (appError) {
+        console.error("Deal application insert error:", appError);
+        // It might fail if the table doesn't exist, we throw so the UI can show the error
+        throw new Error(appError.message);
+      }
+
+      // 2. Insert the submission linked to the application
+      const subId = typeof window !== 'undefined' ? crypto.randomUUID() : Math.random().toString(36).substring(2);
+      
+      const { error: subError } = await supabase
+        .from('deal_submissions')
+        .insert({
+          id: subId,
+          application_id: appId,
+          post_url: videoUrl,
+          platform: 'TikTok', // Default or parse from URL
+          status: 'submitted',
+          creator_notes: proposal
+        });
+
+      if (subError) {
+        console.error("Deal submission insert error:", subError);
+        throw new Error(subError.message);
+      }
+
+      return true;
+    } catch (e: any) {
+      console.error("Failed to apply for deal:", e);
+      throw new Error(e.message || "Erreur lors de la candidature.");
+    }
+  },
+
   // Helper to generate mock submissions for testing (Legacy/Demo support)
   async generateMockSubmissions(campaignId: string, campaignType: 'deal' | 'contest') {
     // Left empty since we disabled mock generations to keep data 100% real as requested.

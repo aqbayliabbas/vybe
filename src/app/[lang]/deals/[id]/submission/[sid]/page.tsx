@@ -210,7 +210,7 @@ export default function SubmissionDetailPage({ params }: { params: Promise<{ id:
                 </div>
                 <h4 className="font-heading text-lg font-bold">Watch Submission Draft</h4>
                 <p className="mt-2 text-xs text-zinc-300 max-w-[280px]">
-                  Phyllo integration has retrieved this private draft for your brand review before public publishing.
+                  The system has retrieved this private draft for your brand review before public publishing.
                 </p>
                 <div className="mt-6 flex items-center gap-4 text-xs text-zinc-400">
                   <span className="flex items-center gap-1"><Eye className="h-3.5 w-3.5" /> Demo Draft</span>
@@ -294,7 +294,7 @@ export default function SubmissionDetailPage({ params }: { params: Promise<{ id:
                 <div className="flex items-center gap-1.5 flex-wrap font-semibold">
                   <h4 className="font-heading text-sm text-foreground">{submission.creator}</h4>
                   {submission.verified && (
-                    <span className="rounded bg-success/15 px-1.5 py-0.5 text-[9px] text-success">Phyllo</span>
+                    <span className="rounded bg-success/15 px-1.5 py-0.5 text-[9px] text-success">Vérifié</span>
                   )}
                 </div>
                 <p className="text-xs text-muted-foreground">{submission.handle} · {submission.platform}</p>
@@ -323,7 +323,7 @@ export default function SubmissionDetailPage({ params }: { params: Promise<{ id:
             <div className="mt-5 rounded-2xl bg-muted/30 p-3 flex items-start gap-2.5">
               <Info className="h-4 w-4 text-muted-foreground/80 mt-0.5 shrink-0" />
               <p className="text-[11px] text-muted-foreground">
-                Stats pulled via Phyllo from Connected Creator Account. Updated 24h ago.
+                Stats pulled from Connected Creator Account. Updated 24h ago.
               </p>
             </div>
           </div>

@@ -10,12 +10,14 @@ import { Button } from '@/components/ui/button';
 import { db, Campaign } from '@/lib/db';
 import { supabase } from '@/lib/supabase';
 import Link from "next/link";
+import { ApplyDealModal } from '@/components/ApplyDealModal';
 
 export default function OpportunitiesPage() {
   const [activeTab, setActiveTab] = useState<'all' | 'deals' | 'contests'>('all');
   const [campaigns, setCampaigns] = useState<Campaign[]>([]);
   const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState('');
+  const [selectedDeal, setSelectedDeal] = useState<{ id: string; name: string } | null>(null);
 
   useEffect(() => {
     async function loadCampaigns() {
@@ -227,11 +229,20 @@ export default function OpportunitiesPage() {
 
               {/* Card Footer */}
               <div className="p-5 mt-auto flex gap-3 bg-white">
-                <Link href={opp.type === 'contest' ? `/contests/${opp.id}` : `/deals/${opp.id}`} className="flex-1">
-                  <Button className="w-full h-10 bg-gradient-to-br from-vybe to-vybe-glow text-white text-[13px] font-semibold rounded-xl shadow-[0_4px_12px_-4px_oklch(0.72_0.14_300_/_0.5)] transition-all">
-                    {opp.type === 'contest' ? 'Voir le concours' : 'Voir l\'offre'}
+                {opp.type === 'contest' ? (
+                  <Link href={`/contests/${opp.id}`} className="flex-1">
+                    <Button className="w-full h-10 bg-gradient-to-br from-vybe to-vybe-glow text-white text-[13px] font-semibold rounded-xl shadow-[0_4px_12px_-4px_oklch(0.72_0.14_300_/_0.5)] transition-all">
+                      Voir le concours
+                    </Button>
+                  </Link>
+                ) : (
+                  <Button 
+                    onClick={() => setSelectedDeal({ id: opp.id, name: opp.name })}
+                    className="flex-1 h-10 bg-gradient-to-br from-vybe to-vybe-glow text-white text-[13px] font-semibold rounded-xl shadow-[0_4px_12px_-4px_oklch(0.72_0.14_300_/_0.5)] transition-all hover:scale-[1.02]"
+                  >
+                    Postuler
                   </Button>
-                </Link>
+                )}
                 <Button variant="outline" className="h-10 px-4 rounded-xl text-[13px] font-semibold">
                   Enregistrer
                 </Button>
@@ -240,6 +251,14 @@ export default function OpportunitiesPage() {
           ))}
         </div>
       )}
+
+      {/* Apply Modal */}
+      <ApplyDealModal 
+        dealId={selectedDeal?.id || ''}
+        dealName={selectedDeal?.name || ''}
+        isOpen={!!selectedDeal}
+        onClose={() => setSelectedDeal(null)}
+      />
     </div>
   );
 }
