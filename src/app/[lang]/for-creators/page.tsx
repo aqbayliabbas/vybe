@@ -6,6 +6,7 @@ import LangSwitcher from '@/components/LangSwitcher';
 import { getDictionary, Locale } from '../dictionaries';
 import { FadeIn, StaggerContainer, StaggerItem } from '@/components/animations/FadeIn';
 import { VybeLogo } from '@/components/VybeLogo';
+import MobileNav from '@/components/MobileNav';
 
 export const metadata: Metadata = {
   title: "Vybe for Creators — Monetize your audience",
@@ -27,14 +28,17 @@ export default async function CreatorLanding({ params }: { params: Promise<{ lan
       </div>
 
       {/* Navbar */}
-      <nav className="fixed top-6 inset-x-0 z-50 pointer-events-none">
-        <div className="mx-auto flex items-center justify-between px-8 max-w-[1240px] pointer-events-auto">
+      <nav className="fixed top-4 sm:top-6 inset-x-0 z-50 pointer-events-none">
+        <div className="mx-auto flex items-center justify-between px-4 sm:px-8 max-w-[1240px] pointer-events-auto">
           {/* Logo */}
           <Link href={`/${lang}`} className="flex items-center px-2">
-            <VybeLogo />
+            <VybeLogo className="scale-90 sm:scale-100 origin-left" />
           </Link>
 
-          {/* Right Section - Double Pill Container */}
+          {/* Mobile hamburger */}
+          <MobileNav lang={lang} dict={dict.nav} page="creators" />
+
+          {/* Right Section - Double Pill Container (desktop) */}
           <div className="hidden md:flex items-center gap-2">
             {/* Nav Links Pill */}
             <div className="flex items-center p-1.5 rounded-full border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 backdrop-blur-xl shadow-inner">
@@ -68,12 +72,12 @@ export default async function CreatorLanding({ params }: { params: Promise<{ lan
       {/* Hero */}
       <section className="relative overflow-hidden pb-20">
         <FadeIn delay={0.1} duration={1}>
-          <div className="relative mx-auto max-w-[1240px] px-8 pt-32 pb-16 text-center md:pt-40 md:pb-24">
+          <div className="relative mx-auto max-w-[1240px] px-4 sm:px-8 pt-28 pb-16 text-center md:pt-40 md:pb-24">
             <div className="mx-auto inline-flex items-center gap-2 rounded-full glass border border-vybe/20 px-4 py-1.5 text-[12px] font-medium text-muted-foreground mb-8 shadow-card">
               <Star className="h-3.5 w-3.5 text-vybe fill-vybe/20" />
               {cl.hero_badge}
             </div>
-            <h1 className="font-heading mx-auto max-w-4xl text-[44px] font-extrabold tracking-tight text-foreground md:text-[64px] md:leading-[1.08] leading-[1.1]">
+            <h1 className="font-heading mx-auto max-w-4xl text-[36px] sm:text-[44px] font-extrabold tracking-tight text-foreground md:text-[64px] md:leading-[1.08] leading-[1.1]">
               {cl.hero_title_main}{' '}
               <span className="bg-gradient-to-r from-vybe via-vybe-glow to-vybe-pink bg-clip-text text-transparent">{cl.hero_title_highlight}</span>
             </h1>
@@ -92,8 +96,8 @@ export default async function CreatorLanding({ params }: { params: Promise<{ lan
       </section>
 
       {/* Features */}
-      <section className="py-24 md:py-32">
-        <div className="mx-auto max-w-[1240px] px-8">
+      <section className="py-16 md:py-32">
+        <div className="mx-auto max-w-[1240px] px-4 sm:px-8">
           <FadeIn>
             <h2 className="font-heading mb-16 text-center text-3xl font-bold tracking-tight text-foreground md:text-[40px]">{cl.features_title}</h2>
           </FadeIn>
@@ -116,9 +120,9 @@ export default async function CreatorLanding({ params }: { params: Promise<{ lan
       </section>
 
       {/* How it works */}
-      <section className="py-24 md:py-32 bg-vybe/5 relative overflow-hidden">
+      <section className="py-16 md:py-32 bg-vybe/5 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-[oklch(0.82_0.17_55_/_0.08)] blur-[100px] pointer-events-none" />
-        <div className="mx-auto max-w-[1240px] px-8 relative">
+        <div className="mx-auto max-w-[1240px] px-4 sm:px-8 relative">
           <FadeIn>
             <h2 className="font-heading mb-16 text-center text-3xl font-bold tracking-tight text-foreground md:text-[40px]">{cl.workflow_title}</h2>
           </FadeIn>
@@ -147,9 +151,9 @@ export default async function CreatorLanding({ params }: { params: Promise<{ lan
       </section>
 
       {/* Integrations */}
-      <section className="py-24 md:py-32">
+      <section className="py-16 md:py-32">
         <FadeIn>
-          <div className="mx-auto max-w-[1240px] px-8 text-center">
+          <div className="mx-auto max-w-[1240px] px-4 sm:px-8 text-center">
             <h2 className="font-heading mb-4 text-3xl font-bold tracking-tight text-foreground md:text-[40px]">{cl.integrations_title}</h2>
             <p className="text-[15px] text-muted-foreground max-w-xl mx-auto mb-16 leading-relaxed">
               {cl.integrations_desc}
@@ -170,12 +174,12 @@ export default async function CreatorLanding({ params }: { params: Promise<{ lan
       </section>
 
       {/* Testimonials */}
-      <section className="py-24 md:py-32 bg-vybe-dark text-white rounded-[3rem] mx-4 md:mx-8 relative overflow-hidden">
+      <section className="py-16 md:py-32 bg-vybe-dark text-white rounded-[2rem] md:rounded-[3rem] mx-4 md:mx-8 relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute -top-20 -left-20 w-96 h-96 bg-vybe/20 rounded-full blur-[100px]" />
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-vybe-pink/20 rounded-full blur-[100px]" />
         </div>
-        <div className="mx-auto max-w-[1240px] px-8 relative z-10">
+        <div className="mx-auto max-w-[1240px] px-4 sm:px-8 relative z-10">
           <FadeIn>
             <h2 className="font-heading mb-16 text-center text-3xl font-bold tracking-tight md:text-[40px]">{cl.testimonials_title}</h2>
           </FadeIn>
@@ -201,9 +205,9 @@ export default async function CreatorLanding({ params }: { params: Promise<{ lan
       </section>
 
       {/* FAQ */}
-      <section className="py-24 md:py-32">
+      <section className="py-16 md:py-32">
         <FadeIn>
-          <div className="mx-auto max-w-3xl px-8">
+          <div className="mx-auto max-w-3xl px-4 sm:px-8">
             <h2 className="font-heading mb-12 text-center text-3xl font-bold tracking-tight text-foreground md:text-[40px]">{cl.faq_title}</h2>
             <div className="space-y-4">
               {[
@@ -233,9 +237,9 @@ export default async function CreatorLanding({ params }: { params: Promise<{ lan
           <div className="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full bg-[oklch(0.62_0.20_28_/_0.07)] blur-[100px]" />
         </div>
 
-        <div className="mx-auto max-w-[1240px] px-8">
+        <div className="mx-auto max-w-[1240px] px-4 sm:px-8">
           <div className="glass-strong rounded-[2.5rem] border border-border/40 shadow-soft overflow-hidden">
-            <div className="px-10 pt-12 pb-10">
+            <div className="px-6 sm:px-10 pt-10 pb-8 sm:pt-12 sm:pb-10">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-14 md:gap-10">
                 <div className="flex flex-col gap-8">
                   <div className="flex items-center">
@@ -316,7 +320,7 @@ export default async function CreatorLanding({ params }: { params: Promise<{ lan
               </p>
             </div>
 
-            <div className="px-10 py-5 border-t border-border/40 flex flex-col md:flex-row items-center justify-between gap-3 text-[12px] text-muted-foreground/60">
+            <div className="px-6 sm:px-10 py-5 border-t border-border/40 flex flex-col md:flex-row items-center justify-between gap-3 text-[12px] text-muted-foreground/60">
               <p>{dict.footer.rights}</p>
               <div className="flex items-center gap-6">
                 <Link href={`/${lang}/terms`} className="hover:text-foreground transition-colors uppercase tracking-widest font-semibold">

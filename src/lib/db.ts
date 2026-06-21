@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any */
 import { supabase } from './supabase';
+import { parseVideoUrl } from './video-embed';
 
 export interface Creator {
   id: string;
@@ -60,6 +61,7 @@ export interface Submission {
   verified: boolean;
   feedback?: string;
   revision_count: number;
+  video_url?: string;
 }
 
 export interface CreatorList {
@@ -348,13 +350,23 @@ export const db = {
       // 2. Insert the submission linked to the application
       const subId = typeof window !== 'undefined' ? crypto.randomUUID() : Math.random().toString(36).substring(2);
       
+      // Auto-detect platform from video URL
+      const videoInfo = parseVideoUrl(videoUrl);
+      const platformMap: Record<string, string> = {
+        'tiktok': 'tiktok',
+        'instagram': 'instagram',
+        'youtube': 'youtube',
+        'unknown': 'tiktok' // fallback
+      };
+      const detectedPlatform = platformMap[videoInfo.platform] || 'tiktok';
+      
       const { error: subError } = await supabase
         .from('deal_submissions')
         .insert({
           id: subId,
           application_id: appId,
           post_url: videoUrl,
-          platform: 'TikTok', // Default or parse from URL
+          platform: detectedPlatform,
           status: 'submitted',
           creator_notes: proposal
         });
@@ -528,7 +540,8 @@ export const db = {
         engagement: 0,
         verified: true,
         feedback: undefined,
-        revision_count: 0
+        revision_count: 0,
+        video_url: contestSub.post_url || undefined
       };
     }
 
@@ -557,7 +570,8 @@ export const db = {
         engagement: 0,
         verified: true,
         feedback: dealSub.brand_feedback || undefined,
-        revision_count: dealSub.revision_number || 0
+        revision_count: dealSub.revision_number || 0,
+        video_url: dealSub.post_url || undefined
       };
     }
 
@@ -585,7 +599,8 @@ export const db = {
         engagement: 0,
         verified: true,
         feedback: undefined,
-        revision_count: 0
+        revision_count: 0,
+        video_url: undefined
       };
     }
 

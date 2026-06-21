@@ -6,19 +6,16 @@ import { useRouter } from 'next/navigation';
 import { DashboardLayout } from '@/components/DashboardLayout';
 import { Button } from '@/components/ui/button';
 import { StatusBadge } from '@/components/StatusBadge';
+import { VideoEmbed } from '@/components/VideoEmbed';
 import { db, Campaign, Submission } from '@/lib/db';
 import { formatDZD, formatNumber } from '@/lib/mock-data';
 import { 
   ArrowLeft, 
-  Play, 
   MessageSquare, 
   Check, 
   X, 
   Info, 
   Smartphone,
-  Eye, 
-  Heart, 
-  Share2, 
   RotateCcw,
   AlertCircle,
   Loader2
@@ -33,7 +30,6 @@ export default function SubmissionDetailPage({ params }: { params: Promise<{ id:
   const [loading, setLoading] = useState(true);
 
   // Review states
-  const [isPlaying, setIsPlaying] = useState(false);
   const [feedback, setFeedback] = useState('');
 
   const maxRevisions = 2;
@@ -197,51 +193,25 @@ export default function SubmissionDetailPage({ params }: { params: Promise<{ id:
         {/* Left column: Video and Guidelines */}
         <div className="space-y-6">
           {/* Video Player */}
-          <div className="relative overflow-hidden rounded-3xl border border-border/40 bg-zinc-950 aspect-[9/16] max-w-[400px] mx-auto shadow-2xl group">
-            {!isPlaying ? (
+          <div className="relative overflow-hidden rounded-3xl border border-border/40 bg-zinc-950 aspect-[9/16] max-w-[400px] mx-auto shadow-2xl">
+            {submission.video_url ? (
+              <VideoEmbed 
+                url={submission.video_url} 
+                className="w-full h-full"
+                showLink={true}
+              />
+            ) : (
               <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center text-white bg-gradient-to-t from-black/80 via-black/40 to-black/70">
                 <div className="absolute top-4 left-4 flex items-center gap-2 rounded-full bg-black/40 px-3 py-1.5 text-[11px] backdrop-blur-md">
                   <Smartphone className="h-3.5 w-3.5 text-vybe-glow" />
-                  <span>{submission.platform} Draft</span>
+                  <span>{submission.platform}</span>
                 </div>
                 
-                <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-vybe to-vybe-glow text-white shadow-soft transition-transform duration-300 group-hover:scale-105 cursor-pointer" onClick={() => setIsPlaying(true)}>
-                  <Play className="ml-1 h-7 w-7 fill-white" />
-                </div>
-                <h4 className="font-heading text-lg font-bold">Watch Submission Draft</h4>
+                <AlertCircle className="h-16 w-16 text-muted-foreground/40 mb-4" />
+                <h4 className="font-heading text-lg font-bold">No Video Submitted</h4>
                 <p className="mt-2 text-xs text-zinc-300 max-w-[280px]">
-                  The system has retrieved this private draft for your brand review before public publishing.
+                  The creator has not yet submitted a video link for this application.
                 </p>
-                <div className="mt-6 flex items-center gap-4 text-xs text-zinc-400">
-                  <span className="flex items-center gap-1"><Eye className="h-3.5 w-3.5" /> Demo Draft</span>
-                  <span className="flex items-center gap-1"><Heart className="h-3.5 w-3.5" /> Verified Creator</span>
-                </div>
-              </div>
-            ) : (
-              <div className="absolute inset-0 flex flex-col justify-end p-6 text-white bg-zinc-900">
-                <div className="absolute inset-0 flex items-center justify-center bg-black/20" onClick={() => setIsPlaying(false)}>
-                  <div className="rounded-full bg-black/40 p-4 backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity">
-                    <Play className="h-6 w-6 fill-white" />
-                  </div>
-                </div>
-
-                <div className="relative z-10 space-y-2 pointer-events-none">
-                  <p className="font-semibold text-sm">{submission.handle}</p>
-                  <p className="text-xs text-zinc-200">
-                    Enjoying a crisp cold Pepsi in Algiers! 🇩🇿☀️ The perfect refresher for the hot summer months. #PepsiAlgeria #SummerRefresh
-                  </p>
-                  <p className="text-[10px] text-zinc-400">♫ Original Audio - {submission.creator}</p>
-                </div>
-                
-                <div className="absolute right-3 bottom-20 flex flex-col items-center gap-4 text-white z-10">
-                  <div className="flex flex-col items-center"><div className="rounded-full bg-black/40 p-2.5 backdrop-blur-sm"><Heart className="h-5 w-5 fill-rose-500 text-rose-500" /></div><span className="text-[10px] mt-1">45.2K</span></div>
-                  <div className="flex flex-col items-center"><div className="rounded-full bg-black/40 p-2.5 backdrop-blur-sm"><MessageSquare className="h-5 w-5 fill-white text-white" /></div><span className="text-[10px] mt-1">820</span></div>
-                  <div className="flex flex-col items-center"><div className="rounded-full bg-black/40 p-2.5 backdrop-blur-sm"><Share2 className="h-5 w-5 fill-white text-white" /></div><span className="text-[10px] mt-1">1.2K</span></div>
-                </div>
-
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/20">
-                  <div className="h-full w-[45%] bg-vybe shadow-[0_0_8px_oklch(0.72_0.14_300)] animate-pulse" />
-                </div>
               </div>
             )}
           </div>
