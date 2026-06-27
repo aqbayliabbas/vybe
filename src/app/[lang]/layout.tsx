@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Cairo } from "next/font/google";
 import localFont from "next/font/local";
 import "../globals.css";
 import { Toaster } from "@/components/ui/sonner";
@@ -8,6 +8,13 @@ const inter = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
   weight: ["300", "400", "500", "600", "700"],
+});
+
+const cairo = Cairo({
+  subsets: ["arabic", "latin"],
+  variable: "--font-arabic-heading",
+  weight: ["400", "600", "700", "800", "900"],
+  display: "swap",
 });
 
 const advercase = localFont({
@@ -62,7 +69,7 @@ export default async function RootLayout({
   const isArabic = lang === "ar";
   
   const fontVariables = isArabic 
-    ? `${inter.variable} ${palestine.variable}`
+    ? `${inter.variable} ${palestine.variable} ${cairo.variable}`
     : `${inter.variable} ${advercase.variable}`;
 
   return (

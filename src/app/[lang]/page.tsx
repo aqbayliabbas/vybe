@@ -64,17 +64,26 @@ export default async function Index({ params }: { params: Promise<{ lang: Locale
       </nav>
 
       {/* Hero */}
-      <section className="relative overflow-hidden pb-20">
+      <section className="relative pb-20">
         <FadeIn delay={0.1} duration={1}>
           <div className="relative mx-auto max-w-[1240px] px-4 sm:px-8 pt-24 pb-16 text-center md:pt-32 md:pb-24">
             <div className="mx-auto inline-flex items-center gap-2 rounded-full glass border border-vybe/20 px-4 py-1.5 text-[12px] font-medium text-muted-foreground mb-8 shadow-card">
               <Sparkles className="h-3.5 w-3.5 text-vybe" />
               {dict.hero.badge}
             </div>
-            <h1 className="font-heading mx-auto max-w-5xl text-[30px] sm:text-[38px] font-extrabold tracking-tight text-foreground md:text-[52px] md:leading-[1.1] leading-[1.15]">
-              {dict.hero.title_main}{' '}
-              <span className="bg-gradient-to-r from-vybe via-vybe-glow to-vybe-pink bg-clip-text text-transparent">{dict.hero.title_highlight}</span>
-            </h1>
+            <div className="relative z-10 py-2">
+              {lang === 'ar' ? (
+                <h1 className="mx-auto max-w-5xl font-black text-foreground text-[24px] sm:text-[30px] md:text-[42px] leading-[1.4] md:leading-[1.3] tracking-normal">
+                  {dict.hero.title_main}{' '}
+                  <span className="bg-gradient-to-r from-vybe via-vybe-glow to-vybe-pink bg-clip-text text-transparent">{dict.hero.title_highlight}</span>
+                </h1>
+              ) : (
+                <h1 className="font-heading mx-auto max-w-5xl font-extrabold tracking-tight text-foreground text-[30px] sm:text-[38px] md:text-[52px] leading-[1.15] md:leading-[1.1]">
+                  {dict.hero.title_main}{' '}
+                  <span className="bg-gradient-to-r from-vybe via-vybe-glow to-vybe-pink bg-clip-text text-transparent">{dict.hero.title_highlight}</span>
+                </h1>
+              )}
+            </div>
             <p className="mx-auto mt-6 max-w-xl text-[17px] text-muted-foreground leading-relaxed font-light">
               {dict.waitlist.hero_desc}
             </p>

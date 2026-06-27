@@ -125,12 +125,12 @@
     font-family: var(--font-heading);
   }
 
-  /* Arabic headings use clean Arial — Palestine font is too ornate for long titles */
+  /* Arabic headings use the Palestine font */
   html[lang="ar"] h1,
   html[lang="ar"] h2,
   html[lang="ar"] h3,
   html[lang="ar"] h4 {
-    font-family: Arial, "Helvetica Neue", sans-serif;
+    font-family: var(--font-heading), Arial, sans-serif;
     font-weight: 800;
     letter-spacing: 0;
   }
