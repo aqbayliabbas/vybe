@@ -45,10 +45,6 @@ export default async function CreatorLanding({ params }: { params: Promise<{ lan
               <div className="flex items-center gap-6 px-6 h-[42px] rounded-full bg-white dark:bg-zinc-900 shadow-md border border-black/5 dark:border-white/5">
                 <Link href={`/${lang}`} className="hover:text-foreground text-[13px] font-semibold text-foreground/80 transition-colors duration-300">{dict.nav.brands}</Link>
                 <span className="hover:text-foreground text-[13px] font-semibold text-foreground/80 transition-colors duration-300 cursor-pointer">{dict.nav.creators}</span>
-                <div className="w-px h-3 bg-black/10 dark:bg-white/10" />
-                <Link href={`/${lang}/login`} className="hover:text-foreground text-[13px] font-semibold text-foreground/80 transition-colors duration-300">
-                  {dict.nav.login}
-                </Link>
               </div>
             </div>
 
@@ -59,12 +55,6 @@ export default async function CreatorLanding({ params }: { params: Promise<{ lan
               </div>
             </div>
 
-            {/* CTA Button */}
-            <Link href={`/${lang}/signup`}>
-              <Button size="sm" className="rounded-full px-6 text-[13px] h-[42px] shadow-md transition-all duration-300 gap-1.5 bg-gradient-to-r from-[#f7931e] to-[#ea2d3e] text-white border-0 hover:opacity-90 hover:scale-105">
-                {dict.nav.start} <ArrowRight className="h-3.5 w-3.5" />
-              </Button>
-            </Link>
           </div>
         </div>
       </nav>
@@ -85,11 +75,11 @@ export default async function CreatorLanding({ params }: { params: Promise<{ lan
               {cl.hero_desc}
             </p>
             <div className="mt-10 w-full flex justify-center">
-              <Link href={`/${lang}/signup`}>
+              <a href="#waitlist">
                 <Button size="lg" className="rounded-2xl px-10 h-14 text-base font-semibold shadow-soft gap-2 bg-gradient-to-r from-[#f7931e] to-[#ea2d3e] text-white border-0 hover:opacity-90 transition-all duration-300 hover:shadow-elevated hover:scale-105">
                   {cl.cta_button} <ArrowRight className="h-4 w-4" />
                 </Button>
-              </Link>
+              </a>
             </div>
           </div>
         </FadeIn>

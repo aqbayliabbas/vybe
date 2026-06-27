@@ -7,20 +7,20 @@
     "start": "Commencer"
   },
   "hero": {
-    "badge": "Fait pour la MENA, utilisé en toute confiance",
-    "title_main": "Le marketing d'influence,",
-    "title_highlight": "simplement efficace",
+    "badge": "La liste d'attente est ouverte",
+    "title_main": "La connexion entre Marques & Créateurs en ",
+    "title_highlight": "région MENA",
     "description": "Trouvez les bons créateurs, collaborez directement, et mesurez des résultats réels sans intermédiaires ni surprises.",
     "start_free": "Démarrer gratuitement",
     "view_demo": "Voir une démo"
   },
   "stats": {
-    "creators_val": "100 000+",
-    "creators_label": "Créateurs vérifiés",
-    "collabs_val": "1 000+",
-    "collabs_label": "Collaborations",
-    "views_val": "1 Md+",
-    "views_label": "Vues organiques"
+    "creators_val": "500+",
+    "creators_label": "Créateurs (Accès Anticipé)",
+    "collabs_val": "50+",
+    "collabs_label": "Marques Partenaires",
+    "views_val": "0",
+    "views_label": "Frais Cachés"
   },
   "deals": {
     "title": "Collaborez directement. Sans intermédiaire.",
@@ -156,13 +156,13 @@
     "content_placeholder": "Le contenu légal sera affiché ici. La documentation officielle est actuellement en cours de rédaction."
   },
   "waitlist": {
-    "hero_desc": "Vybe pour les Marques arrive bientôt. Soyez le premier à vous connecter avec plus de 100 000 créateurs vérifiés dans la région MENA — rejoignez la liste d'attente maintenant.",
+    "hero_desc": "Rejoignez notre liste d'attente exclusive. Que vous soyez une marque cherchant à gagner en visibilité ou un créateur prêt à collaborer, Vybe est votre prochaine étape.",
     "no_spam": "Pas de spam, jamais. Nous ne vous contacterons que lorsque votre accès sera prêt.",
-    "placeholder": "vous@marque.com",
+    "placeholder": "votre@email.com",
     "joining": "Rejoindre…",
     "join_button": "Rejoindre la liste d'attente",
     "success_title": "Vous êtes sur la liste d'attente !",
-    "success_desc": "Nous contacterons {email} dès que l'accès aux marques sera ouvert.",
+    "success_desc": "Nous contacterons {email} dès que l'accès sera ouvert.",
     "error_fallback": "Un problème est survenu. Veuillez réessayer."
   },
   "creator_landing": {

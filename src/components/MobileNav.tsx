@@ -10,7 +10,6 @@ interface NavDict {
   brands: string;
   creators: string;
   pricing?: string;
-  login: string;
   start: string;
 }
 
@@ -133,27 +132,7 @@ export default function MobileNav({ lang, dict, page = "brands" }: MobileNavProp
             )}
 
             <div className="h-px bg-border/40 mx-2 my-1" />
-
-            <Link
-              href={`/${lang}/login`}
-              onClick={close}
-              className="flex items-center px-4 py-3.5 rounded-2xl text-[15px] font-semibold text-foreground/80 hover:text-foreground hover:bg-black/5 dark:hover:bg-white/5 transition-all duration-200"
-            >
-              {dict.login}
-            </Link>
           </nav>
-
-          {/* CTA */}
-          <div className="px-4 pb-6 pt-2">
-            <Link href={`/${lang}/signup`} onClick={close} className="block">
-              <Button
-                size="lg"
-                className="w-full rounded-2xl h-12 text-[15px] font-semibold gap-2 bg-gradient-to-r from-[#f7931e] to-[#ea2d3e] text-white border-0 hover:opacity-90 shadow-md"
-              >
-                {dict.start} <ArrowRight className="h-4 w-4" />
-              </Button>
-            </Link>
-          </div>
         </div>
       </div>
     </div>

@@ -2,7 +2,6 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
 import { Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Locale } from '@/app/[lang]/dictionaries';
@@ -66,9 +65,9 @@ export default function PricingSection({ dict, lang }: { dict: PricingDict, lang
                   </li>
                 ))}
               </ul>
-              <Link href={`/${lang}/signup`} className="block mt-7">
+              <a href="#waitlist" className="block mt-7">
                 <Button className={`w-full rounded-xl h-10 text-[13px] font-semibold ${p.highlight ? 'bg-white text-[#ea2d3e] hover:bg-white/90 border-0' : 'bg-transparent border-black/10 dark:border-white/10 text-foreground hover:bg-black/5 dark:hover:bg-white/5'}`} variant={p.highlight ? 'default' : 'outline'}>{dict.button}</Button>
-              </Link>
+              </a>
             </div>
           ))}
         </div>

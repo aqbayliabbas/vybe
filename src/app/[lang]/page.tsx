@@ -36,23 +36,21 @@ export default async function Index({ params }: { params: Promise<{ lang: Locale
             <VybeLogo className="scale-90 sm:scale-100 origin-left" />
           </div>
 
-          {/* Mobile hamburger */}
-          <MobileNav lang={lang} dict={dict.nav} page="brands" />
+          {/* Mobile hamburger (Hidden for waitlist) */}
+          {false && <MobileNav lang={lang} dict={dict.nav} page="brands" />}
 
           {/* Right Section - Double Pill Container (desktop) */}
           <div className="hidden md:flex items-center gap-2">
-            {/* Nav Links Pill */}
-            <div className="flex items-center p-1.5 rounded-full border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 backdrop-blur-xl shadow-inner">
-              <div className="flex items-center gap-6 px-6 h-[42px] rounded-full bg-white dark:bg-zinc-900 shadow-md border border-black/5 dark:border-white/5">
-                <span className="hover:text-foreground text-[13px] font-semibold text-foreground/80 transition-colors duration-300 cursor-pointer">{dict.nav.brands}</span>
-                <Link href={`/${lang}/for-creators`} className="hover:text-foreground text-[13px] font-semibold text-foreground/80 transition-colors duration-300">{dict.nav.creators}</Link>
-                <a href="#pricing" className="hover:text-foreground text-[13px] font-semibold text-foreground/80 transition-colors duration-300">{dict.nav.pricing}</a>
-                <div className="w-px h-3 bg-black/10 dark:bg-white/10" />
-                <Link href={`/${lang}/login`} className="hover:text-foreground text-[13px] font-semibold text-foreground/80 transition-colors duration-300">
-                  {dict.nav.login}
-                </Link>
+            {/* Nav Links Pill (Hidden for waitlist) */}
+            {false && (
+              <div className="flex items-center p-1.5 rounded-full border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 backdrop-blur-xl shadow-inner">
+                <div className="flex items-center gap-6 px-6 h-[42px] rounded-full bg-white dark:bg-zinc-900 shadow-md border border-black/5 dark:border-white/5">
+                  <span className="hover:text-foreground text-[13px] font-semibold text-foreground/80 transition-colors duration-300 cursor-pointer">{dict.nav.brands}</span>
+                  <Link href={`/${lang}/for-creators`} className="hover:text-foreground text-[13px] font-semibold text-foreground/80 transition-colors duration-300">{dict.nav.creators}</Link>
+                  <a href="#pricing" className="hover:text-foreground text-[13px] font-semibold text-foreground/80 transition-colors duration-300">{dict.nav.pricing}</a>
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Language Switcher */}
             <div className="p-1.5 rounded-full border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 backdrop-blur-xl shadow-inner">
@@ -61,12 +59,6 @@ export default async function Index({ params }: { params: Promise<{ lang: Locale
               </div>
             </div>
 
-            {/* CTA Button */}
-            <Link href={`/${lang}/signup`}>
-              <Button size="sm" className="rounded-full px-6 text-[13px] h-[42px] shadow-md transition-all duration-300 gap-1.5 bg-gradient-to-r from-[#f7931e] to-[#ea2d3e] text-white border-0 hover:opacity-90 hover:scale-105">
-                {dict.nav.start} <ArrowRight className="h-3.5 w-3.5" />
-              </Button>
-            </Link>
           </div>
         </div>
       </nav>
@@ -79,7 +71,7 @@ export default async function Index({ params }: { params: Promise<{ lang: Locale
               <Sparkles className="h-3.5 w-3.5 text-vybe" />
               {dict.hero.badge}
             </div>
-            <h1 className="font-heading mx-auto max-w-4xl text-[36px] sm:text-[44px] font-extrabold tracking-tight text-foreground md:text-[64px] md:leading-[1.08] leading-[1.1]">
+            <h1 className="font-heading mx-auto max-w-5xl text-[30px] sm:text-[38px] font-extrabold tracking-tight text-foreground md:text-[52px] md:leading-[1.1] leading-[1.15]">
               {dict.hero.title_main}{' '}
               <span className="bg-gradient-to-r from-vybe via-vybe-glow to-vybe-pink bg-clip-text text-transparent">{dict.hero.title_highlight}</span>
             </h1>
@@ -106,7 +98,10 @@ export default async function Index({ params }: { params: Promise<{ lang: Locale
             </div>
           </div>
         </FadeIn>
+      </section>
 
+      {false && (
+        <>
         {/* App Screenshot (Flat Placement) */}
         <FadeIn delay={0.4} direction="up">
           <div className="relative mx-auto max-w-[1100px] px-4 sm:px-8 mt-2 mb-20">
@@ -117,7 +112,6 @@ export default async function Index({ params }: { params: Promise<{ lang: Locale
             />
           </div>
         </FadeIn>
-      </section>
 
       {/* How It Works — Deals */}
       <section className="py-16 md:py-32">
@@ -247,7 +241,7 @@ export default async function Index({ params }: { params: Promise<{ lang: Locale
                   </div>
                   <blockquote className="text-[14px] font-medium text-foreground leading-relaxed">&ldquo;{t.quote}&rdquo;</blockquote>
                   <div className="mt-6">
-                    <p className="text-[13px] font-semibold text-foreground">{t.name}</p>
+                     <p className="text-[13px] font-semibold text-foreground">{t.name}</p>
                     <p className="text-[11px] text-muted-foreground mt-0.5">{t.role}</p>
                   </div>
                 </div>
@@ -268,11 +262,11 @@ export default async function Index({ params }: { params: Promise<{ lang: Locale
                 <h2 className="font-heading text-3xl font-bold text-white md:text-[44px] mb-4 leading-tight">{dict.cta.title}</h2>
                 <p className="text-[15px] text-white/70 max-w-md mx-auto mb-10 font-light">{dict.cta.desc}</p>
                 <div className="flex flex-wrap items-center justify-center gap-4">
-                  <Link href={`/${lang}/signup`}>
+                  <a href="#waitlist">
                     <Button size="lg" className="bg-white text-[#ea2d3e] hover:bg-white/95 font-semibold rounded-2xl px-8 h-12 text-sm shadow-soft transition-all duration-300 hover:shadow-elevated gap-2">
                       {dict.cta.start_free} <ArrowRight className="h-4 w-4" />
                     </Button>
-                  </Link>
+                  </a>
                   <Button variant="outline" size="lg" className="bg-transparent border-white/30 text-white hover:bg-white/10 hover:text-white rounded-2xl px-8 h-12 text-sm transition-all duration-300">
                     {dict.cta.view_demo}
                   </Button>
@@ -323,7 +317,7 @@ export default async function Index({ params }: { params: Promise<{ lang: Locale
                       <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                     </a>
                   </div>
-
+                  
                   {/* Contact info */}
                   <div className="space-y-2 text-[14px] text-muted-foreground">
                     <p className="leading-relaxed">
@@ -393,11 +387,11 @@ export default async function Index({ params }: { params: Promise<{ lang: Locale
                     ? "Du marketing d'influence aux vrais résultats. Nous connectons votre marque à la bonne audience."
                     : 'From influencer marketing to real results. We connect your brand with the right audience.'}
                 </p>
-                <Link href={`/${lang}/signup`}>
+                <a href="#waitlist">
                   <button className="flex-shrink-0 brand-gradient text-white text-[13px] font-bold px-7 py-3 rounded-full hover:opacity-90 transition-all duration-300 shadow-soft hover:shadow-elevated hover:scale-105">
                     {lang === 'ar' ? 'ابدأ الآن' : lang === 'fr' ? 'Commencer' : 'Get Started'}
                   </button>
-                </Link>
+                </a>
               </div>
             </div>
 
@@ -430,6 +424,8 @@ export default async function Index({ params }: { params: Promise<{ lang: Locale
         {/* Breathing room below card */}
         <div className="h-8" />
       </footer>
+      </>
+      )}
     </div>
   );
 }

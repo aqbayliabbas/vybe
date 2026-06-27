@@ -7,20 +7,20 @@
     "start": "Get Started"
   },
   "hero": {
-    "badge": "Built for MENA, trusted everywhere",
-    "title_main": "Influencer marketing,",
-    "title_highlight": "simply effective",
+    "badge": "The waitlist is now open",
+    "title_main": "Connecting Brands & Creators in the ",
+    "title_highlight": "MENA Region",
     "description": "Find the right creators, collaborate directly, and measure real results without middlemen or surprises.",
     "start_free": "Start for free",
     "view_demo": "View a demo"
   },
   "stats": {
-    "creators_val": "100K+",
-    "creators_label": "Verified creators",
-    "collabs_val": "1,000+",
-    "collabs_label": "Collaborations",
-    "views_val": "1B+",
-    "views_label": "Organic views"
+    "creators_val": "500+",
+    "creators_label": "Early Access Creators",
+    "collabs_val": "50+",
+    "collabs_label": "Partner Brands",
+    "views_val": "0",
+    "views_label": "Hidden Fees"
   },
   "deals": {
     "title": "Collaborate directly. No middlemen.",
@@ -179,13 +179,13 @@
     "content_placeholder": "Legal content will be displayed here. The official documentation is currently being drafted."
   },
   "waitlist": {
-    "hero_desc": "Vybe for Brands is launching soon. Be the first to connect with 100K+ verified MENA creators join the waitlist now.",
+    "hero_desc": "Join our exclusive waitlist. Whether you're a brand looking to grow your reach or a creator ready to collaborate, Vybe is your next step.",
     "no_spam": "No spam, ever. We'll only reach out when your access is ready.",
-    "placeholder": "your@brand.com",
+    "placeholder": "your@email.com",
     "joining": "Joining…",
     "join_button": "Join the Waitlist",
     "success_title": "You're on the waitlist!",
-    "success_desc": "We'll reach out to {email} when brands access opens.",
+    "success_desc": "We'll reach out to {email} when access opens.",
     "error_fallback": "Something went wrong. Please try again."
   },
   "creator_landing": {

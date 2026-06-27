@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import localFont from "next/font/local";
 import "../globals.css";
 import { Toaster } from "@/components/ui/sonner";
-import { AuthProvider } from "@/components/AuthProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -11,16 +10,16 @@ const inter = Inter({
   weight: ["300", "400", "500", "600", "700"],
 });
 
-const gambarino = localFont({
+const advercase = localFont({
   src: [
     {
-      path: "../../../public/landing/Fonts/Gambarino/Gambarino-Regular.woff2",
+      path: "../../../public/landing/Fonts/Advercase/Advercase-Regular.ttf",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../../../public/landing/Fonts/Gambarino/Gambarino-Regular.woff",
-      weight: "400",
+      path: "../../../public/landing/Fonts/Advercase/Advercase-Bold.ttf",
+      weight: "700",
       style: "normal",
     },
   ],
@@ -28,15 +27,15 @@ const gambarino = localFont({
   display: "swap",
 });
 
-const kobanzeen = localFont({
+const palestine = localFont({
   src: [
     {
-      path: "../../../public/landing/Fonts/Ko-Banzeen/Ko_Banzeen-Normal.otf",
+      path: "../../../public/landing/Fonts/Palestine/Palestine-Regular.otf",
       weight: "400",
       style: "normal",
     },
   ],
-  variable: "--font-arabic",
+  variable: "--font-heading",
   display: "swap",
 });
 
@@ -63,18 +62,15 @@ export default async function RootLayout({
   const isArabic = lang === "ar";
   
   const fontVariables = isArabic 
-    ? `${kobanzeen.variable} ${kobanzeen.variable}` // Using kobanzeen for both sans and heading when arabic
-    : `${inter.variable} ${gambarino.variable}`;
+    ? `${inter.variable} ${palestine.variable}`
+    : `${inter.variable} ${advercase.variable}`;
 
   return (
     <html lang={lang} dir={isArabic ? "rtl" : "ltr"} className={fontVariables} suppressHydrationWarning>
-      <body className={`antialiased ${isArabic ? 'font-arabic' : ''}`}>
-        <AuthProvider>
-          {children}
-        </AuthProvider>
+      <body className="antialiased" suppressHydrationWarning>
+        {children}
         <Toaster />
       </body>
     </html>
   );
 }
-
