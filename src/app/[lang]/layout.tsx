@@ -10,17 +10,10 @@ const inter = Inter({
   weight: ["300", "400", "500", "600", "700"],
 });
 
-const cairoSans = Cairo({
+const cairo = Cairo({
   subsets: ["arabic", "latin"],
-  variable: "--font-sans",
+  variable: "--font-cairo",
   weight: ["300", "400", "500", "600", "700", "800", "900"],
-  display: "swap",
-});
-
-const cairoHeading = Cairo({
-  subsets: ["arabic", "latin"],
-  variable: "--font-heading",
-  weight: ["600", "700", "800", "900"],
   display: "swap",
 });
 
@@ -34,18 +27,6 @@ const advercase = localFont({
     {
       path: "../../../public/landing/Fonts/Advercase/Advercase-Bold.ttf",
       weight: "700",
-      style: "normal",
-    },
-  ],
-  variable: "--font-heading",
-  display: "swap",
-});
-
-const palestine = localFont({
-  src: [
-    {
-      path: "../../../public/landing/Fonts/Palestine/Palestine-Regular.otf",
-      weight: "400",
       style: "normal",
     },
   ],
@@ -74,9 +55,9 @@ export default async function RootLayout({
 }>) {
   const { lang } = await params;
   const isArabic = lang === "ar";
-  
-  const fontVariables = isArabic 
-    ? `${cairoSans.variable} ${cairoHeading.variable}`
+
+  const fontVariables = isArabic
+    ? `${cairo.variable}`
     : `${inter.variable} ${advercase.variable}`;
 
   return (
