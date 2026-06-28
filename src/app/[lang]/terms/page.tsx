@@ -16,7 +16,7 @@ export default async function TermsPage({ params }: { params: Promise<{ lang: Lo
   const sections = lang === 'ar'
     ? [
         { num: '1', title: 'القبول بالشروط', body: 'باستخدام منصة Vybe، فإنك توافق على الالتزام بهذه الشروط والأحكام. إذا كنت لا توافق على أي جزء من هذه الشروط، فلا يحق لك استخدام خدماتنا.' },
-        { num: '2', title: 'استخدام الخدمة', body: 'توفر منصة Vybe بيئة للتواصل بين العلامات التجارية وصناع المحتوى في منطقة الشرق الأوسط وشمال أفريقيا. يُحظر استخدام المنصة لأي أغراض غير مشروعة أو مضللة.' },
+        { num: '2', title: 'استخدام الخدمة', body: 'توفر منصة Vybe بيئة للتواصل بين العلامات التجارية وصناع المحتوى في الجزائر. يُحظر استخدام المنصة لأي أغراض غير مشروعة أو مضللة.' },
         { num: '3', title: 'الحسابات والمعلومات', body: 'أنت مسؤول عن الحفاظ على سرية بيانات حسابك. يجب أن تكون جميع المعلومات التي تقدمها دقيقة وصحيحة.' },
         { num: '4', title: 'المدفوعات والاشتراكات', body: 'يتم الفواتير على أساس شهري أو سنوي. يمكنك إلغاء اشتراكك في أي وقت، وسيظل حسابك نشطًا حتى نهاية فترة الفواتير الحالية.' },
         { num: '5', title: 'الملكية الفكرية', body: 'جميع المحتويات والميزات والوظائف الموجودة على المنصة هي ملك حصري لـ Vybe.' },
@@ -25,7 +25,7 @@ export default async function TermsPage({ params }: { params: Promise<{ lang: Lo
     : lang === 'fr'
     ? [
         { num: '1', title: 'Acceptation des conditions', body: 'En utilisant la plateforme Vybe, vous acceptez d\'être lié par ces termes et conditions. Si vous n\'acceptez pas une partie quelconque de ces conditions, vous n\'êtes pas autorisé à utiliser nos services.' },
-        { num: '2', title: 'Utilisation du service', body: 'Vybe est une plateforme qui connecte les marques et les créateurs de contenu dans la région MENA. Il est interdit d\'utiliser la plateforme à des fins illégales ou trompeuses.' },
+        { num: '2', title: 'Utilisation du service', body: 'Vybe est une plateforme qui connecte les marques et les créateurs de contenu en Algérie. Il est interdit d\'utiliser la plateforme à des fins illégales ou trompeuses.' },
         { num: '3', title: 'Comptes et informations', body: 'Vous êtes responsable de la confidentialité des identifiants de votre compte. Toutes les informations que vous fournissez doivent être exactes et véridiques.' },
         { num: '4', title: 'Paiements et abonnements', body: 'La facturation est effectuée sur une base mensuelle ou annuelle. Vous pouvez annuler votre abonnement à tout moment, et votre compte restera actif jusqu\'à la fin de la période de facturation en cours.' },
         { num: '5', title: 'Propriété intellectuelle', body: 'Tout le contenu, les fonctionnalités et les fonctions présents sur la plateforme sont la propriété exclusive de Vybe.' },
@@ -33,7 +33,7 @@ export default async function TermsPage({ params }: { params: Promise<{ lang: Lo
       ]
     : [
         { num: '1', title: 'Acceptance of terms', body: 'By using the Vybe platform, you agree to be bound by these terms and conditions. If you do not agree to any part of these terms, you are not authorized to use our services.' },
-        { num: '2', title: 'Use of service', body: 'Vybe is a platform that connects brands and content creators in the MENA region. Using the platform for any illegal or misleading purposes is strictly prohibited.' },
+        { num: '2', title: 'Use of service', body: 'Vybe is a platform that connects brands and content creators in Algeria. Using the platform for any illegal or misleading purposes is strictly prohibited.' },
         { num: '3', title: 'Accounts and information', body: 'You are responsible for maintaining the confidentiality of your account credentials. All information you provide must be accurate and truthful.' },
         { num: '4', title: 'Payments and subscriptions', body: 'Billing is done on a monthly or annual basis. You may cancel your subscription at any time, and your account will remain active until the end of the current billing period.' },
         { num: '5', title: 'Intellectual property', body: 'All content, features, and functionality present on the platform are the exclusive property of Vybe.' },

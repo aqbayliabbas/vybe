@@ -8,9 +8,9 @@
   },
   "hero": {
     "badge": "La liste d'attente est ouverte",
-    "title_main": "La connexion entre Marques & Créateurs en ",
-    "title_highlight": "région MENA",
-    "description": "Trouvez les bons créateurs, collaborez directement, et mesurez des résultats réels sans intermédiaires ni surprises.",
+    "title_main": "Connecter les Marques & les Créateurs en ",
+    "title_highlight": "Algérie",
+    "description": "Trouvez les bons créateurs, collaborez directement, et mesurez de vrais résultats, sans intermédiaires.",
     "start_free": "Démarrer gratuitement",
     "view_demo": "Voir une démo"
   },
@@ -34,10 +34,16 @@
     "button": "Publier une offre"
   },
   "creators_teaser": {
-    "title_main": "100 000 créateurs MENA.",
+    "title_main": "100 000 créateurs algériens.",
     "title_highlight": "Un seul endroit.",
     "desc": "Filtrez par région, niche, plateforme, taille d'audience et taux d'engagement. Chaque donnée est vérifiée en temps réel — jamais auto-déclarée.",
-    "tags": ["📍 Algérie 🇩🇿", "📱 TikTok", "👥 Micro (10k–50k)", "🎯 Beauté", "💬 Arabe + Français"],
+    "tags": [
+      "📍 Algérie 🇩🇿",
+      "📱 TikTok",
+      "👥 Micro (10k–50k)",
+      "🎯 Beauté",
+      "💬 Arabe + Français"
+    ],
     "niches": {
       "beauty": "Beauté · DZ",
       "tech": "Tech · DZ",
@@ -48,7 +54,7 @@
     "overlay": "Créez un compte pour accéder à l'annuaire"
   },
   "why_vybe": {
-    "title": "Pensé pour la MENA. Dès le premier jour.",
+    "title": "Pensé pour l'Algérie. Dès le premier jour.",
     "feat1_title": "Paiements locaux inclus",
     "feat1_desc": "Chargily pour l'Algérie (CIB, BaridiMob, Dahabia), Stripe pour le Golfe. Pas de virements compliqués, pas de frais cachés.",
     "feat2_title": "Données vérifiées, toujours",
@@ -67,17 +73,34 @@
     "plan1": {
       "name": "Gratuit",
       "tag": "Pour tester",
-      "features": ["1 offre active", "1 collaboration", "Annuaire limité", "Analyses essentielles"]
+      "features": [
+        "1 offre active",
+        "1 collaboration",
+        "Annuaire limité",
+        "Analyses essentielles"
+      ]
     },
     "plan2": {
       "name": "Pro",
       "tag": "Recommandé",
-      "features": ["Offres illimitées", "Collaborations illimitées", "Annuaire complet", "Analyses avancées", "10 listes de créateurs"]
+      "features": [
+        "Offres illimitées",
+        "Collaborations illimitées",
+        "Annuaire complet",
+        "Analyses avancées",
+        "10 listes de créateurs"
+      ]
     },
     "plan3": {
       "name": "Scale",
       "tag": "",
-      "features": ["Tout illimité", "Analyses avancées", "Listes illimitées", "Account manager dédié", "Export CSV"]
+      "features": [
+        "Tout illimité",
+        "Analyses avancées",
+        "Listes illimitées",
+        "Account manager dédié",
+        "Export CSV"
+      ]
     }
   },
   "testimonials": {
@@ -101,7 +124,7 @@
     "pricing": "Tarification",
     "about": "À Propos",
     "contact": "Contact",
-    "rights": "© 2025 Vybe. Conçu pour la MENA",
+    "rights": "© 2025 Vybe. Conçu pour l'Algérie",
     "privacy": "Politique de Confidentialité",
     "terms": "Conditions d'Utilisation",
     "affiliates": "Affiliés"
@@ -125,7 +148,7 @@
     "error_google": "La connexion avec Google a échoué.",
     "success_login": "Connexion réussie !",
     "signup_title": "Créez votre compte",
-    "signup_subtitle": "Commencez à vous connecter avec des créateurs dans la région MENA",
+    "signup_subtitle": "Commencez à vous connecter avec des créateurs en Algérie",
     "i_am_a": "Je suis un(e)",
     "creator": "Créateur",
     "brand": "Marque",
@@ -157,12 +180,14 @@
   },
   "waitlist": {
     "hero_desc": "Rejoignez notre liste d'attente exclusive. Que vous soyez une marque cherchant à gagner en visibilité ou un créateur prêt à collaborer, Vybe est votre prochaine étape.",
-    "no_spam": "Pas de spam, jamais. Nous ne vous contacterons que lorsque votre accès sera prêt.",
-    "placeholder": "votre@email.com",
+    "no_spam": "Pas de spam, jamais. Nous vous contacterons sur WhatsApp dès que votre accès sera prêt.",
+    "placeholder_name": "Nom complet",
+    "placeholder_pseudo": "@pseudo",
+    "placeholder_whatsapp": "+213 6XX XXX XXX",
     "joining": "Rejoindre…",
     "join_button": "Rejoindre la liste d'attente",
     "success_title": "Vous êtes sur la liste d'attente !",
-    "success_desc": "Nous contacterons {email} dès que l'accès sera ouvert.",
+    "success_desc": "Nous contacterons {name} sur WhatsApp dès que l'accès sera ouvert.",
     "error_fallback": "Un problème est survenu. Veuillez réessayer."
   },
   "creator_landing": {
@@ -187,7 +212,7 @@
     "w3_desc": "Soumettez votre contenu, faites-le approuver et retirez vos gains directement sur votre compte bancaire local.",
     "integrations_title": "Vérifié par les API officielles",
     "integrations_desc": "Nous utilisons des intégrations directes pour nous connecter en toute sécurité aux plateformes. Vos données ne sont jamais auto-déclarées, ce qui instaure une confiance totale avec les marques.",
-    "testimonials_title": "Adoré par les créateurs MENA",
+    "testimonials_title": "Adoré par les créateurs algériens",
     "faq_title": "Foire aux questions",
     "faq1_q": "Y a-t-il un nombre minimum d'abonnés requis ?",
     "faq1_a": "Oui, vous avez besoin d'au moins 10 000 abonnés authentiques sur TikTok, Instagram ou YouTube pour rejoindre l'annuaire.",

@@ -11,8 +11,8 @@ import { FadeIn, StaggerContainer, StaggerItem } from '@/components/animations/F
 import { VybeLogo } from '@/components/VybeLogo';
 
 export const metadata: Metadata = {
-  title: "Vybe — Le marketing d'influence, pensé pour la MENA",
-  description: "Connectez votre marque à des créateurs vérifiés à travers la MENA. Collaborations directes, statistiques authentiques, paiements locaux. De l'Algérie au Golfe.",
+  title: "Vybe — Le marketing d'influence, la première plateforme en Algérie",
+  description: "Connectez votre marque à des créateurs vérifiés en Algérie. Collaborations directes, statistiques authentiques, paiements locaux.",
 };
 
 export default async function Index({ params }: { params: Promise<{ lang: Locale }> }) {

@@ -10,10 +10,17 @@ const inter = Inter({
   weight: ["300", "400", "500", "600", "700"],
 });
 
-const cairo = Cairo({
+const cairoSans = Cairo({
   subsets: ["arabic", "latin"],
-  variable: "--font-arabic-heading",
-  weight: ["400", "600", "700", "800", "900"],
+  variable: "--font-sans",
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  display: "swap",
+});
+
+const cairoHeading = Cairo({
+  subsets: ["arabic", "latin"],
+  variable: "--font-heading",
+  weight: ["600", "700", "800", "900"],
   display: "swap",
 });
 
@@ -69,7 +76,7 @@ export default async function RootLayout({
   const isArabic = lang === "ar";
   
   const fontVariables = isArabic 
-    ? `${inter.variable} ${palestine.variable} ${cairo.variable}`
+    ? `${cairoSans.variable} ${cairoHeading.variable}`
     : `${inter.variable} ${advercase.variable}`;
 
   return (

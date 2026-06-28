@@ -8,8 +8,8 @@
   },
   "hero": {
     "badge": "The waitlist is now open",
-    "title_main": "Connecting Brands & Creators in the ",
-    "title_highlight": "MENA Region",
+    "title_main": "Connecting Brands & Creators in ",
+    "title_highlight": "Algeria",
     "description": "Find the right creators, collaborate directly, and measure real results without middlemen or surprises.",
     "start_free": "Start for free",
     "view_demo": "View a demo"
@@ -34,7 +34,7 @@
     "button": "Post an offer"
   },
   "creators_teaser": {
-    "title_main": "100K MENA creators.",
+    "title_main": "100K Algerian creators.",
     "title_highlight": "One single place.",
     "desc": "Filter by region, niche, platform, audience size, and engagement rate. Every data point is verified in real-time — never self-reported.",
     "tags": [
@@ -54,7 +54,7 @@
     "overlay": "Create an account to access the directory"
   },
   "why_vybe": {
-    "title": "Built for MENA. From day one.",
+    "title": "Built for Algeria. From day one.",
     "feat1_title": "Local payments included",
     "feat1_desc": "Chargily for Algeria (CIB, BaridiMob, Dahabia), Stripe for the Gulf. No complicated transfers, no hidden fees.",
     "feat2_title": "Verified data, always",
@@ -124,7 +124,7 @@
     "pricing": "Pricing",
     "about": "About Us",
     "contact": "Contact",
-    "rights": "© 2025 Vybe. Built for MENA",
+    "rights": "© 2025 Vybe. Built for Algeria",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
     "affiliates": "Affiliates"
@@ -148,7 +148,7 @@
     "error_google": "Failed to login with Google.",
     "success_login": "Login successful!",
     "signup_title": "Create your account",
-    "signup_subtitle": "Start connecting with creators in the MENA region",
+    "signup_subtitle": "Start connecting with creators in Algeria",
     "i_am_a": "I am a",
     "creator": "Creator",
     "brand": "Brand",
@@ -180,12 +180,14 @@
   },
   "waitlist": {
     "hero_desc": "Join our exclusive waitlist. Whether you're a brand looking to grow your reach or a creator ready to collaborate, Vybe is your next step.",
-    "no_spam": "No spam, ever. We'll only reach out when your access is ready.",
-    "placeholder": "your@email.com",
+    "no_spam": "No spam, ever. We'll reach out on WhatsApp when your access is ready.",
+    "placeholder_name": "Full Name",
+    "placeholder_pseudo": "@username",
+    "placeholder_whatsapp": "+213 6XX XXX XXX",
     "joining": "Joining…",
     "join_button": "Join the Waitlist",
     "success_title": "You're on the waitlist!",
-    "success_desc": "We'll reach out to {email} when access opens.",
+    "success_desc": "We'll reach out to {name} on WhatsApp when access opens.",
     "error_fallback": "Something went wrong. Please try again."
   },
   "creator_landing": {
@@ -210,7 +212,7 @@
     "w3_desc": "Submit your content, get it approved, and withdraw your earnings directly to your local bank account.",
     "integrations_title": "Verified by official APIs",
     "integrations_desc": "We use secure direct integrations to connect to social platforms. Your data is never self-reported, which builds ultimate trust with top brands.",
-    "testimonials_title": "Loved by MENA creators",
+    "testimonials_title": "Loved by Algerian creators",
     "faq_title": "Frequently Asked Questions",
     "faq1_q": "Is there a minimum follower requirement?",
     "faq1_a": "Yes, you need at least 10,000 authentic followers on either TikTok, Instagram, or YouTube to join the creator directory.",
